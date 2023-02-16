@@ -9,13 +9,13 @@ public class Tile_Entity
 
     public string race_type { get; set; }
 
-    //public string Stringify()
-    //{
-    //    return JsonUtility.ToJson(this);
-    //}
+    public string Stringify()
+    {
+        return JsonUtility.ToJson(this);
+    }
 
-    //public static Tile_Entity Parse(string json)
-    //{
-    //    return JsonUtility.FromJson<Tile_Entity>(json);
-    //}
+    public static Tile_Entity Parse(string json)
+    {
+        return JsonUtility.FromJson<Tile_Entity>(json);
+    }
 }

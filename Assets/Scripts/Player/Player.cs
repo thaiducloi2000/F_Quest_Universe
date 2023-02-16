@@ -20,9 +20,10 @@ public class Player : MonoBehaviour
         //setting camera 
         this.transform.position = Vector3.zero;
         root = GameBoard.Instance.Root.transform;
-        offset = new Vector3(-GameBoard.Instance.size * 10f, GameBoard.Instance.size * 10f, 0f);
+        offset = new Vector3(-GameBoard.Instance.size * 10f, GameBoard.Instance.size * 4f, -1.5f);
         //offset = new Vector3(0, 7, -9f);
         Camera.main.transform.position = offset;
+        //Camera.main.transform.LookAt(root);
         SelectJoB();
     }
     void Update()
@@ -109,6 +110,7 @@ public class Player : MonoBehaviour
     public void MoveToFatRace()
     {
         this.isInFatRace = true;
+        this.gameObject.GetComponent<Step>().currentPos = 0;
         StartCoroutine(this.gameObject.GetComponent<Step>().MoveFatRace(this));
     }
 }

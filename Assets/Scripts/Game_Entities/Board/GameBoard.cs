@@ -54,7 +54,7 @@ public class GameBoard : MonoBehaviour
         // Spawn Fat Race with Square
         Spawn_Fat_Race(NumberTiles_Fat_Race);
         // Set Event Type to All Race , TMP is RAT RACE
-        //Set_Tiles_Type();
+        Set_Tiles_Type();
     }
 
     public void Set_Tiles_Type()
@@ -62,6 +62,7 @@ public class GameBoard : MonoBehaviour
         Server_Connection_Helper helper = new Server_Connection_Helper();
         StartCoroutine(helper.Get("Tiles/tile", (request,process) =>
         {
+            Debug.Log(request.downloadHandler.text);
             List<Tile_Entity> tiles = ParseJsonToListTile(request);
             Debug.Log(string.Format("Downloaded Tiles Process {0:P1}", process * 100f + "%"));
             foreach (Tile_Entity tile in tiles)
@@ -111,7 +112,6 @@ public class GameBoard : MonoBehaviour
                 Debug.LogError(": HTTP Error: " + webRequest.error);
                 break;
             case UnityWebRequest.Result.Success:
-                Debug.Log(webRequest.downloadHandler.text);
                 list = JsonConvert.DeserializeObject<List<Tile_Entity>>(webRequest.downloadHandler.text);
                 break;
             default:
