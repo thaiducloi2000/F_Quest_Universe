@@ -15,7 +15,7 @@ public class Deal_Panel : MonoBehaviour
     public void SetBigDeal(Big_Deal deal)
     {
         this.Title.text = deal.Title;
-        //this.Description.text = deal.Description;
+        this.Description.text = deal.Description;
         this.Cost_Txt.text = "Cost : " + deal.Cost.ToString();
         this.Mortgage_Divined_Txt.text = "Divined : " + deal.Dividend;
         this.CashFlow_TradingRange_Txt.text = "Trading Range : " + deal.TradingRange;
@@ -26,7 +26,7 @@ public class Deal_Panel : MonoBehaviour
     public void SetSmallDeal(Small_Deal deal)
     {
         this.Title.text = deal.Title;
-        //this.Description.text = deal.Description;
+        this.Description.text = deal.Description;
         this.Cost_Txt.text = "Cost : " + deal.Cost.ToString();
         this.Mortgage_Divined_Txt.text = "Divined : " + deal.Mortgage;
         this.CashFlow_TradingRange_Txt.text = "Trading Range : " + deal.Cashflow;

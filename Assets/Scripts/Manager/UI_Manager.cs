@@ -72,11 +72,10 @@ public class UI_Manager : MonoBehaviour
 
         // Get BIg Deal From Instance
         Deal_Panel panel = Deal_Panel.GetComponent<Deal_Panel>();
-        //int deal_num = Random.Range(0, EvenCard_Data.instance.Big_Deal_List.Count);
-        //Big_Deal deal = EvenCard_Data.instance.Big_Deal_List[deal_num];
-        panel.SetBigDeal(new Big_Deal("","",0,0,"",0,1));
-        //b_deal = deal_num;
-        b_deal = 0;
+        int deal_num = Random.Range(0, EvenCard_Data.instance.Big_Deal_List.Count-1);
+        Big_Deal deal = EvenCard_Data.instance.Big_Deal_List[deal_num];
+        panel.SetBigDeal(deal);
+        b_deal = deal_num;
     }
     public void Small_Deal_Btn()
     {
@@ -86,12 +85,11 @@ public class UI_Manager : MonoBehaviour
 
         // Get Small Deal From Instance
         Deal_Panel panel = Deal_Panel.GetComponent<Deal_Panel>();
-        //int deal_num = Random.Range(0, EvenCard_Data.instance.Small_Deal_List.Count);
-        //Small_Deal deal = EvenCard_Data.instance.Small_Deal_List[deal_num];
-        //panel.SetSmallDeal(deal);
-        //s_deal = deal_num;
-        panel.SetSmallDeal(new Small_Deal("", "", 0, 0,0,0,1));
-        s_deal = 0;
+        int deal_num = Random.Range(0, EvenCard_Data.instance.Small_Deal_List.Count-1);
+        Small_Deal deal = EvenCard_Data.instance.Small_Deal_List[deal_num];
+        panel.SetSmallDeal(deal);
+        s_deal = deal_num;
+        
     }
 
 
