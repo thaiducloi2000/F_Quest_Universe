@@ -10,6 +10,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject Deal_Panel;
     public GameObject Select_Deal_Type_Panel;
     public GameObject Job_Panel;
+    public GameObject Financial_Panel;
     private int b_deal = -1;
     private int s_deal = -1;
     [SerializeField] Player player;
@@ -54,11 +55,13 @@ public class UI_Manager : MonoBehaviour
         
         if(b_deal >= 0)
         {
-            player.MoveToFatRace();
+            //player.MoveToFatRace();
+            ApplyBigDeal(EvenCard_Data.instance.Big_Deal_List[b_deal]);
         }
         else if (s_deal >= 0)
         {
-            player.MoveToFatRace();
+            //player.MoveToFatRace();
+            ApplySmallDeal(EvenCard_Data.instance.Small_Deal_List[b_deal]);
         }
         Deal_Panel.SetActive(false);
         Reset_Deal();
@@ -77,6 +80,42 @@ public class UI_Manager : MonoBehaviour
         panel.SetBigDeal(deal);
         b_deal = deal_num;
     }
+
+    private void ApplyBigDeal(Big_Deal deal)
+    {
+        switch (deal.Action)
+        {
+            case 1:
+                player.financial_rp.SetCash(player.financial_rp.GetCash()-deal.Cost);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void ApplySmallDeal(Small_Deal deal)
+    {
+        switch (deal.Action)
+        {
+            case 1:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                break;
+        }
+    }
+
     public void Small_Deal_Btn()
     {
         Select_Deal_Type_Panel.SetActive(false);

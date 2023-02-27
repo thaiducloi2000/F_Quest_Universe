@@ -9,11 +9,12 @@ using static Event_card_Entity;
 public class EvenCard_Data : MonoBehaviour
 {
     public static EvenCard_Data instance;
+    [SerializeField] public List<Job> Job_List;
     [SerializeField] public List<Small_Deal> Small_Deal_List;
     [SerializeField] public List<Big_Deal> Big_Deal_List;
     [SerializeField] public List<Doodad> Doodads;
     [SerializeField] public List<Market> Markets;
-
+    public Server_Connection_Helper helper;
     private void Awake()
     {
         if(instance != null)
@@ -21,25 +22,27 @@ public class EvenCard_Data : MonoBehaviour
             Destroy(this);
         }
         instance = this;
+        helper = GetComponent<Server_Connection_Helper>();
         LoadAllDeal();
+        //LoadAllJob();
     }
 
-    private void Start()
+    private void Update()
     {
+        
     }
 
     private void LoadAllDeal()
     {
         // load all Deal from db
-        Server_Connection_Helper helper = new Server_Connection_Helper();
         Small_Deal_List = new List<Small_Deal>();
         Big_Deal_List = new List<Big_Deal>();
         Doodads = new List<Doodad>();
         Markets = new List<Market>();
-        StartCoroutine(helper.Get("EventCards/event", (request,process) =>
+        StartCoroutine(helper.Get("MgEventCards/event", (request,process) =>
         {
             List<Event_card_Entity> event_card = ParseJsonToListEventCard(request);
-            Debug.Log(string.Format("Downloaded Event Card Process {0:P1}", process * 100f + "%"));
+            //Debug.Log(string.Format("Downloaded Event Card Process {0:P1}", process * 100f + "%"));
             foreach (Event_card_Entity card in event_card)
             {
                 switch (card.event_type_id)
@@ -78,7 +81,7 @@ public class EvenCard_Data : MonoBehaviour
                 Debug.LogError(": HTTP Error: " + webRequest.error);
                 break;
             case UnityWebRequest.Result.Success:
-                Debug.Log(webRequest.downloadHandler.text);
+                //Debug.Log(webRequest.downloadHandler.text);
                 list = JsonConvert.DeserializeObject<List<Event_card_Entity>>(webRequest.downloadHandler.text);
                 break;
             default:

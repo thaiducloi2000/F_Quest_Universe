@@ -44,7 +44,6 @@ public class GameBoard : MonoBehaviour
     }
 
     // Spawn Tile with number has been create
-    [Obsolete]
     private void SpawnTiles()
     {
         Transform rootPos = Root.GetComponent<Transform>();
@@ -59,12 +58,11 @@ public class GameBoard : MonoBehaviour
 
     public void Set_Tiles_Type()
     {
-        Server_Connection_Helper helper = new Server_Connection_Helper();
-        StartCoroutine(helper.Get("Tiles/tile", (request,process) =>
+        StartCoroutine(EvenCard_Data.instance.helper.Get("MgTiles/tile", (request,process) =>
         {
-            Debug.Log(request.downloadHandler.text);
+            //Debug.Log(request.downloadHandler.text);
             List<Tile_Entity> tiles = ParseJsonToListTile(request);
-            Debug.Log(string.Format("Downloaded Tiles Process {0:P1}", process * 100f + "%"));
+            //Debug.Log(string.Format("Downloaded Tiles Process {0:P1}", process * 100f + "%"));
             foreach (Tile_Entity tile in tiles)
             {
                 switch (tile.race_type)

@@ -1,6 +1,6 @@
 
 using UnityEngine;
-public class Deal : MonoBehaviour
+public class Deal
 {
 
     public enum Deal_Type { Big, Small, Doodad, Market };

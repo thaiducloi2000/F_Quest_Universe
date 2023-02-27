@@ -16,7 +16,7 @@ public class Deal_Panel : MonoBehaviour
     {
         this.Title.text = deal.Title;
         this.Description.text = deal.Description;
-        this.Cost_Txt.text = "Cost : " + deal.Cost.ToString();
+        this.Cost_Txt.text = "Cost : " + deal.Cost;
         this.Mortgage_Divined_Txt.text = "Divined : " + deal.Dividend;
         this.CashFlow_TradingRange_Txt.text = "Trading Range : " + deal.TradingRange;
         this.DownSize_Share_Owned_Txt.text = "Share Owned : " + deal.Share_Owned;
