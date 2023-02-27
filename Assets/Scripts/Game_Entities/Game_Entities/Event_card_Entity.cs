@@ -17,13 +17,4 @@ public class Event_card_Entity
 
     public int action { get; set; }
 
-    public string Stringify()
-    {
-        return JsonUtility.ToJson(this);
-    }
-
-    public static Tile_Entity Parse(string json)
-    {
-        return JsonUtility.FromJson<Tile_Entity>(json);
-    }
 }

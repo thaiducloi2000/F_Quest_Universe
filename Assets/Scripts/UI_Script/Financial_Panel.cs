@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using UnityEditor.VersionControl;
-using Unity.VisualScripting;
 
-public class Job_Panel : MonoBehaviour
+public class Financial_Panel : MonoBehaviour
 {
     [SerializeField] private GameObject Job_Name;
     [SerializeField] private GameObject Content_Incomes;
@@ -17,17 +15,16 @@ public class Job_Panel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI total_Asset;
     [SerializeField] private TextMeshProUGUI total_Expense;
     [SerializeField] private TextMeshProUGUI total_Liabilities;
-    public float total_income = 0;
-    public float total_asset = 0;
-    public float total_expense = 0;
-    public float total_liability = 0;
-    public Job job;
 
-    public void loadJobInformation(Job job)
+    public void loadFinInformation(Financial fin)
     {
-       
-        Job_Name.GetComponent<TextMeshProUGUI>().text = job.name;
-        foreach(game_accounts account in job.game_accounts)
+        resetText();
+        float total_income = 0;
+        float total_asset = 0;
+        float total_expense = 0;
+        float total_liability = 0;
+        Job_Name.GetComponent<TextMeshProUGUI>().text = fin.job_card_id;
+        foreach (game_accounts account in fin.game_accounts)
         {
             switch (account.gameAccount_type)
             {
@@ -51,10 +48,23 @@ public class Job_Panel : MonoBehaviour
                     break;
             }
         }
-        this.job = job;
         total_Income.text = "Tong Thu Nhap: " + total_income;
         total_Asset.text = "Tong Tai San: " + total_asset;
         total_Expense.text = "Tong Chi Phi: " + total_expense;
         total_Liabilities.text = "Tong No : " + total_liability;
     }
+
+    private void resetText()
+    {
+        Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        Content_Assets.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        Content_Expenses.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        Content_Liabilities.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        total_Income.text = "";
+        total_Asset.text = "";
+        total_Expense.text = "";
+        total_Liabilities.text = "";
+
+    }
+
 }

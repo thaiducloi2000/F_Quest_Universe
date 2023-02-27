@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.25140953, g: 0.14862238, b: 0.11912387, a: 1}
+  m_IndirectSpecularColor: {r: 0.25051695, g: 0.14794517, b: 0.11856228, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 360187617}
   - component: {fileID: 360187618}
   - component: {fileID: 360187619}
+  - component: {fileID: 360187620}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -188,6 +189,19 @@ MonoBehaviour:
   Big_Deal_List: []
   Doodads: []
   Markets: []
+  helper: {fileID: 0}
+--- !u!114 &360187620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360187616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0da15ecdb45b3ba41a8d3c41e8112b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

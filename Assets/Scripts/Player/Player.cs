@@ -1,18 +1,23 @@
+﻿using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking;
+
 public class Player : MonoBehaviour
 {
-    public int id;
+    public string id = "7f1515ce-a0bd-4b95-adf7-98d1243e6117CU";
     public Transform root;
     public Vector3 offset;
     // Add Avatar
     public GameObject Avatar;
     public bool isInFatRace = false;
-
+    public int child_amount = 0;
+    public float cash;
     public UI_Manager UI;
-
+    public Financial financial_rp;
     public Job job;
 
     private void Start()
@@ -24,8 +29,11 @@ public class Player : MonoBehaviour
         //offset = new Vector3(0, 7, -9f);
         Camera.main.transform.position = offset;
         //Camera.main.transform.LookAt(root);
-        SelectJoB();
+
+        LoadAllJob();
     }
+
+
     void Update()
     {
         // camera alway looking to root of Gameboard
@@ -54,45 +62,28 @@ public class Player : MonoBehaviour
 
     public void SelectJoB()
     {
-        // waiting for db
-        Income inc = new Income("Luong", 4600);
-        Expense ex = new Expense("Thue", 910);
-        Expense ex5 = new Expense("Tra Lai Vay Mua nha", 700);
-        Expense ex1 = new Expense("Tra Tien Vay Dai Hoc", 60);
-        Expense ex2 = new Expense("Tra Tien Vay mua xe", 120);
-        Expense ex3 = new Expense("Tra tien vay the tin dung", 910);
-        Expense ex4 = new Expense("Chi Phi mua sam", 910);
-        Expense ex6 = new Expense("Chi Phi Khac", 910);
-        Asset asset = new Asset("Tien Mat", 400);
-        Liability lia = new Liability("No The Chap", 75000);
-        Liability lia1 = new Liability("No Dai Hoc", 12000);
-        Liability lia2 = new Liability("No Mua Xe", 6000);
-        Liability lia3 = new Liability("No The Tin Dung", 3000);
-        Liability lia4 = new Liability("No Mua Tra Gop", 1000);
-        // -------------------------------------------
-        Job job = new Job("job_01", "CEO", 240);
-        job.incomes.Add(inc);
-        job.expenses.Add(ex);
-        job.expenses.Add(ex5);
-        job.expenses.Add(ex1);
-        job.expenses.Add(ex2);
-        job.expenses.Add(ex3);
-        job.expenses.Add(ex4);
-        job.expenses.Add(ex6);
-        job.assets.Add(asset);
-        job.liabilities.Add(lia);
-        job.liabilities.Add(lia1);
-        job.liabilities.Add(lia2);
-        job.liabilities.Add(lia3);
-        job.liabilities.Add(lia4);
-        UI.PopupJob_UI(job);
+        UI.PopupJob_UI(EvenCard_Data.instance.Job_List[Random.Range(0, EvenCard_Data.instance.Job_List.Count - 1)]);
     }
 
     public void AcceptJob()
     {
-        this.job = new Job(UI.Job_Panel.GetComponent<Job_Panel>().job);
-        UI.AcceptJob();
-        Debug.Log(this.job.Job_ID);
+        this.job = UI.Job_Panel.GetComponent<Job_Panel>().job;
+        UI.Job_Panel.SetActive(false);
+        ApplyJobToFinancial(this.job);
+        UI.Financial_Panel.GetComponent<Financial_Panel_Manager>().Financial(this.financial_rp);
+    }
+
+    public void ApplyJobToFinancial(Job job)
+    {
+        float expense = 0;
+        foreach(game_accounts account in job.game_accounts)
+        {
+            if(account.gameAccount_type == AccountType.Expense)
+            {
+                expense += account.gameAccount_cost;
+            }
+        }
+        this.financial_rp = new Financial(child_amount,this.id,job._id,0, expense,job.game_accounts);
     }
 
     public void MoveCameraOnCirle()
@@ -112,5 +103,44 @@ public class Player : MonoBehaviour
         this.isInFatRace = true;
         this.gameObject.GetComponent<Step>().currentPos = 0;
         StartCoroutine(this.gameObject.GetComponent<Step>().MoveFatRace(this));
+    }
+
+    private void LoadAllJob()
+    {
+        EvenCard_Data.instance.Job_List = new List<Job>();
+        StartCoroutine(EvenCard_Data.instance.helper.Get("MgJobCards/job", (request, process) =>
+        {
+            List<Job> list = ParseJsonToListJob(request);
+            foreach (Job job in list)
+            {
+                EvenCard_Data.instance.Job_List.Add(job);
+            }if(request.downloadProgress == 1)
+            {
+                SelectJoB();
+            }
+        }
+        ));
+    }
+
+    private List<Job> ParseJsonToListJob(UnityWebRequest webRequest)
+    {
+        List<Job> list = new List<Job>();
+        switch (webRequest.result)
+        {
+            case UnityWebRequest.Result.ConnectionError:
+            case UnityWebRequest.Result.DataProcessingError:
+                Debug.LogError(": Error: " + webRequest.error);
+                break;
+            case UnityWebRequest.Result.ProtocolError:
+                Debug.LogError(": HTTP Error: " + webRequest.error);
+                break;
+            case UnityWebRequest.Result.Success:
+                //Debug.Log(webRequest.downloadHandler.text);
+                list = JsonConvert.DeserializeObject<List<Job>>(webRequest.downloadHandler.text);
+                break;
+            default:
+                break;
+        }
+        return list;
     }
 }

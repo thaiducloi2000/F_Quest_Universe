@@ -1,11 +1,11 @@
 
-public class Expense : GameAccount
+public class Expense : game_accounts
 {
     public Expense(string gameaccount_name, float gameaccount_money)
     {
-        this.AccountType = AccountType.Expense;
-        this.Gameaccount_name = gameaccount_name;
-        this.Gameaccount_money = gameaccount_money;
+        this.gameAccount_type = AccountType.Expense;
+        this.gameAccount_name = gameaccount_name;
+        this.gameAccount_cost = gameaccount_money;
     }
 
     public override float Account_Balance()
