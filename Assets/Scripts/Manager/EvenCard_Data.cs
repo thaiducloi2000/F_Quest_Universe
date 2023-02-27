@@ -22,7 +22,10 @@ public class EvenCard_Data : MonoBehaviour
             Destroy(this);
         }
         instance = this;
-        helper = GetComponent<Server_Connection_Helper>();
+        if (helper == null)
+        {
+            helper = GetComponent<Server_Connection_Helper>();
+        }
         LoadAllDeal();
         //LoadAllJob();
     }

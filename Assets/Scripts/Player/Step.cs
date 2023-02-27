@@ -66,7 +66,11 @@ public class Step : MonoBehaviour
     bool MoveToNextTiles(Vector3 nextTiles,Player player)
     {
 
-        return nextTiles != (player.Avatar.transform.position = Vector3.MoveTowards(player.Avatar.transform.position, nextTiles, 10f * Time.deltaTime));
+        Vector3 newPos = player.Avatar.transform.position; // Store the current position of the game object
+        newPos.y += Mathf.Sin(Time.deltaTime * .5f * Mathf.PI) * .5f; // Calculate the new y-coordinate using a sine wave
+        //player.Avatar.transform.position = Vector3.MoveTowards(newPos, nextTiles, Time.deltaTime); // Move the game object towards the next position using MoveTowards()
+        //return Vector3.Distance(player.Avatar.transform.position, nextTiles) > Mathf.Epsilon;
+        return nextTiles != (player.Avatar.transform.position = Vector3.MoveTowards(newPos, nextTiles, 2f * Time.deltaTime));
     }
 
     void PopupPanel(Tile tile)
