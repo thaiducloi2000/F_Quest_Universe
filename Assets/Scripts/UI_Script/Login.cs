@@ -27,7 +27,7 @@ public class Login : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("GamePlay_Scene");
         }
     }
 }
