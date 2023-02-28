@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 
 
-public enum TileType { Oppotunity, Charity, PayCheck, Offer,DownSize,Doodads };
+public enum TileType { Oppotunity, Charity, PayCheck, Baby,DownSize,Doodads,Market};
 
 public class Tile : MonoBehaviour
 {
@@ -26,6 +26,10 @@ public class Tile : MonoBehaviour
                 this.gameObject.GetComponent<Renderer>().material = material.oppotunity_material;
                 titles.text = "Oppotunity";
                 break;
+            case TileType.Market:
+                this.gameObject.GetComponent<Renderer>().material = material.oppotunity_material;
+                titles.text = "Oppotunity";
+                break;
             case TileType.Charity:
                 this.gameObject.GetComponent<Renderer>().material = material.charity_material;
                 titles.text = "Charity";
@@ -34,9 +38,9 @@ public class Tile : MonoBehaviour
                 this.gameObject.GetComponent<Renderer>().material = material.paycheck_material;
                 titles.text = "PayCheck";
                 break;
-            case TileType.Offer:
+            case TileType.Baby:
                 this.gameObject.GetComponent<Renderer>().material = material.offer_material;
-                titles.text = "Offer";
+                titles.text = "Have Baby";
                 break;
             case TileType.DownSize:
                 this.gameObject.GetComponent<Renderer>().material = material.downsize_material;
@@ -48,7 +52,6 @@ public class Tile : MonoBehaviour
                 break;
             default:
                 this.gameObject.GetComponent<Renderer>().material = material.default_material;
-
                 titles.text = "";
                 break;
         }

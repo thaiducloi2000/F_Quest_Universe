@@ -13,12 +13,13 @@ public class GameBoard : MonoBehaviour
     public const int NumberTiles_Fat_Race = 32;
     public static GameBoard Instance;
     // Avatar Tile -- Prefabs;
-    [SerializeField] private GameObject Tile;
+    [SerializeField] private GameObject Tile_Rat_Race;
+    [SerializeField] private GameObject Tile_Fat_Race;
     [SerializeField] public Tile_Material tile_avatar;
     // Size of Tile
-    public float size = 1f;
+    public float size = 4f;
     // Radius of Rat Race
-    public float radius = 2f;
+    public float radius = 10f;
     // List Tile
     public List<GameObject> Tiles_Rat_Race;
     public List<GameObject> Tiles_Fat_Race;
@@ -53,7 +54,7 @@ public class GameBoard : MonoBehaviour
         // Spawn Fat Race with Square
         Spawn_Fat_Race(NumberTiles_Fat_Race);
         // Set Event Type to All Race , TMP is RAT RACE
-        Set_Tiles_Type();
+        //Set_Tiles_Type();
     }
 
     public void Set_Tiles_Type()
@@ -89,7 +90,7 @@ public class GameBoard : MonoBehaviour
         {
             float x = Mathf.Cos(angle) * radius;
             float z = Mathf.Sin(angle) * radius;
-            GameObject tile = Instantiate(Tile, new Vector3(-x*size, 0f, z*size), Quaternion.identity);
+            GameObject tile = Instantiate(Tile_Rat_Race, new Vector3(-x*size, 0f, z*size), Quaternion.identity);
             tile.transform.rotation = Quaternion.EulerAngles(0f, angle, 0f);
             tile.transform.parent = this.transform;
             Tiles_Rat_Race.Add(tile);
@@ -155,13 +156,17 @@ public class GameBoard : MonoBehaviour
                 type = TileType.PayCheck;
                 break;
             case "Get A Child":
-            case "DowSize":
+                type = TileType.Baby;
+                break;
+            case "DownSize":
                 type = TileType.DownSize;
                 break;
             case "Charity":
                 type = TileType.Charity;
                 break;
             case "The Market":
+                type = TileType.Market;
+                break;
             case "Doodad":
                 type = TileType.Doodads;
                 break;
@@ -187,19 +192,19 @@ public class GameBoard : MonoBehaviour
             GameObject tile;
             if (i <= nextQuare)
             {
-                tile = Instantiate(Tile, new Vector3(size * (quare  - i), 0f,-size * quare), Quaternion.identity);
+                tile = Instantiate(Tile_Fat_Race, new Vector3(size * (quare  - i), 0f,-size * quare), Quaternion.identity);
             }
             else if (i > nextQuare && i <= nextQuare * 2)
             {
-                tile = Instantiate(Tile, new Vector3(size * (quare-nextQuare), 0f, size * (i-nextQuare-quare)), Quaternion.Euler(0,90f,0));
+                tile = Instantiate(Tile_Fat_Race, new Vector3(size * (quare-nextQuare), 0f, size * (i-nextQuare-quare)), Quaternion.Euler(0,90f,0));
             }
             else if (i > (nextQuare * 2) && i <= (nextQuare * 3))
             {
-                tile = Instantiate(Tile, new Vector3(size * (i-(nextQuare*2+quare)), 0f, size * (nextQuare - quare)), Quaternion.Euler(0f, 180f, 0f));
+                tile = Instantiate(Tile_Fat_Race, new Vector3(size * (i-(nextQuare*2+quare)), 0f, size * (nextQuare - quare)), Quaternion.Euler(0f, 180f, 0f));
             }
             else
             {
-                tile = Instantiate(Tile, new Vector3(size * quare, 0f, size * (4 * nextQuare - i-quare)), Quaternion.Euler(0f, -90f, 0f));
+                tile = Instantiate(Tile_Fat_Race, new Vector3(size * quare, 0f, size * (4 * nextQuare - i-quare)), Quaternion.Euler(0f, -90f, 0f));
             }
 
             tile.transform.parent = this.transform;

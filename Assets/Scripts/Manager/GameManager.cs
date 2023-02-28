@@ -52,9 +52,9 @@ public class GameManager : MonoBehaviour
         {
             if(player.gameObject.GetComponent<Player>() != null)
             {
+                player.Avatar.transform.localScale *= GameBoard.Instance.size;
                 Vector3 pos = new Vector3(GameBoard.Instance.Tiles_Rat_Race[0].transform.position.x,0.25f, GameBoard.Instance.Tiles_Rat_Race[0].transform.position.z);
                 player.Avatar.transform.position = pos;
-                player.Avatar.transform.localScale *= GameBoard.Instance.size;
             }
         }
     }

@@ -1294,10 +1294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3917dc872c74b244a949295d9c845709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tile: {fileID: 8657884295678679279, guid: 0c0b9fa6e53fc2c48b65806aac9bba13, type: 3}
+  Tile_Rat_Race: {fileID: 1555232899658156867, guid: 81f8832f79c7ee64597b17b4a5030f76, type: 3}
+  Tile_Fat_Race: {fileID: 8657884295678679279, guid: 0c0b9fa6e53fc2c48b65806aac9bba13, type: 3}
   tile_avatar: {fileID: 11400000, guid: 7e7890eaa5311674da1844ff8b9ea6f6, type: 2}
-  size: 1
-  radius: 2
+  size: 3
+  radius: 1.8
   Tiles_Rat_Race: []
   Tiles_Fat_Race: []
   Root: {fileID: 1263806551}
