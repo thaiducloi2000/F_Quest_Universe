@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8657884295678679278}
   - component: {fileID: 8657884295678679274}
   m_Layer: 0
-  m_Name: Tile
+  m_Name: Tile_Fat_Race
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

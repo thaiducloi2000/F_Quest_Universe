@@ -1322,6 +1322,8 @@ MonoBehaviour:
   offset: {x: 0, y: 5, z: 0}
   Avatar: {fileID: 1750163530999635398}
   isInFatRace: 0
+  child_amount: 0
+  cash: 0
   UI: {fileID: 7921104226558755954}
 --- !u!114 &1750163529464388846
 MonoBehaviour:

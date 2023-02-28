@@ -83,21 +83,28 @@ public class Step : MonoBehaviour
                 UI_Manager ui = GetComponentInChildren<UI_Manager>();
                 ui.PopUpDeal_UI();
                 break;
-            case TileType.Offer:
+            case TileType.Market:
                 //UI_Manager.Instance.PopUpDeal_UI();
                 Debug.Log(EvenCard_Data.instance.Markets[Random.Range(0, EvenCard_Data.instance.Markets.Count)].Title);
                 break;
+            case TileType.Baby:
+                Baby();
+                Debug.Log("Have Baby Bro !!!");
+                break;
             case TileType.Charity:
                 //UI_Manager.Instance.PopUpDeal_UI();
+                Charity();
                 Debug.Log("Charity");
                 break;
             case TileType.DownSize:
                 //UI_Manager.Instance.PopUpDeal_UI();
+                DownSize();
                 Debug.Log("DownSize");
                 break;
             case TileType.Doodads:
                 //UI_Manager.Instance.PopUpDeal_UI();
-                Debug.Log(EvenCard_Data.instance.Doodads[Random.Range(0, EvenCard_Data.instance.Doodads.Count)].Title);
+                Doodad doodad = EvenCard_Data.instance.Doodads[Random.Range(0, EvenCard_Data.instance.Doodads.Count)];
+                Doodads(doodad);
                 break;
             default:
                 break;
@@ -119,5 +126,46 @@ public class Step : MonoBehaviour
             }
         }
         player.financial_rp.SetCash(player.financial_rp.GetCash() + total_income - total_expense);
+    }
+
+    private void Doodads(Doodad doodad)
+    {
+        player.financial_rp.SetCash(player.financial_rp.GetCash() - doodad.Cost);
+    }
+
+    private void DownSize()
+    {
+        float total_expense = 0;
+        foreach (game_accounts account in player.financial_rp.game_accounts)
+        {
+            if (account.gameAccount_type == AccountType.Expense)
+            {
+                total_expense += account.gameAccount_cost;
+            }
+        }
+        player.financial_rp.SetCash(player.financial_rp.GetCash() + - total_expense);
+        // Add Code to missing 2 turn
+
+    }
+
+    private void Charity()
+    {
+        float total_income = 0;
+        foreach (game_accounts account in player.financial_rp.game_accounts)
+        {
+            if (account.gameAccount_type == AccountType.Income)
+            {
+                total_income += account.gameAccount_cost;
+            }
+        }
+        player.financial_rp.SetCash(player.financial_rp.GetCash() - (total_income/10));
+    }
+
+    private void Baby()
+    {
+        if(player.child_amount < 3)
+        {
+            player.child_amount++;
+        }
     }
 }
