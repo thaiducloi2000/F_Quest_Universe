@@ -26,7 +26,7 @@ public class EvenCard_Data : MonoBehaviour
         {
             helper = GetComponent<Server_Connection_Helper>();
         }
-        //LoadAllDeal();
+        LoadAllDeal();
         //LoadAllJob();
     }
 
@@ -42,7 +42,7 @@ public class EvenCard_Data : MonoBehaviour
         Big_Deal_List = new List<Big_Deal>();
         Doodads = new List<Doodad>();
         Markets = new List<Market>();
-        StartCoroutine(helper.Get("MgEventCards/event", (request,process) =>
+        StartCoroutine(helper.Get("EventCards/event-card", (request,process) =>
         {
             List<Event_card_Entity> event_card = ParseJsonToListEventCard(request);
             //Debug.Log(string.Format("Downloaded Event Card Process {0:P1}", process * 100f + "%"));

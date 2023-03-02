@@ -30,6 +30,7 @@ public class Step : MonoBehaviour
             Vector3 nextPos = race[this.currentPos].transform.position;
             if (race[this.currentPos].GetComponent<Tile>().Type == TileType.PayCheck)
             {
+                Debug.Log("Paycheck");
                 Paycheck();
             }
             nextPos.y = 0.25f;
@@ -89,17 +90,14 @@ public class Step : MonoBehaviour
                 break;
             case TileType.Baby:
                 Baby();
-                Debug.Log("Have Baby Bro !!!");
                 break;
             case TileType.Charity:
                 //UI_Manager.Instance.PopUpDeal_UI();
                 Charity();
-                Debug.Log("Charity");
                 break;
             case TileType.DownSize:
                 //UI_Manager.Instance.PopUpDeal_UI();
                 DownSize();
-                Debug.Log("DownSize");
                 break;
             case TileType.Doodads:
                 //UI_Manager.Instance.PopUpDeal_UI();
@@ -115,16 +113,17 @@ public class Step : MonoBehaviour
     {
         float total_expense = 0;
         float total_income = 0;
-        foreach(game_accounts account in player.financial_rp.game_accounts)
+        foreach(Game_accounts account in player.financial_rp.game_accounts)
         {
-            if(account.gameAccount_type == AccountType.Income)
+            if(account.Game_account_type == AccountType.Income)
             {
-                total_income += account.gameAccount_cost;
-            }else if(account.gameAccount_type == AccountType.Expense)
+                total_income += account.Game_account_value;
+            }else if(account.Game_account_type == AccountType.Expense)
             {
-                total_expense += account.gameAccount_cost;
+                total_expense += account.Game_account_value;
             }
         }
+        Debug.Log(total_income + " _ " + total_expense);
         player.financial_rp.SetCash(player.financial_rp.GetCash() + total_income - total_expense);
     }
 
@@ -136,11 +135,11 @@ public class Step : MonoBehaviour
     private void DownSize()
     {
         float total_expense = 0;
-        foreach (game_accounts account in player.financial_rp.game_accounts)
+        foreach (Game_accounts account in player.financial_rp.game_accounts)
         {
-            if (account.gameAccount_type == AccountType.Expense)
+            if (account.Game_account_type == AccountType.Expense)
             {
-                total_expense += account.gameAccount_cost;
+                total_expense += account.Game_account_value;
             }
         }
         player.financial_rp.SetCash(player.financial_rp.GetCash() + - total_expense);
@@ -151,11 +150,11 @@ public class Step : MonoBehaviour
     private void Charity()
     {
         float total_income = 0;
-        foreach (game_accounts account in player.financial_rp.game_accounts)
+        foreach (Game_accounts account in player.financial_rp.game_accounts)
         {
-            if (account.gameAccount_type == AccountType.Income)
+            if (account.Game_account_type == AccountType.Income)
             {
-                total_income += account.gameAccount_cost;
+                total_income += account.Game_account_value;
             }
         }
         player.financial_rp.SetCash(player.financial_rp.GetCash() - (total_income/10));

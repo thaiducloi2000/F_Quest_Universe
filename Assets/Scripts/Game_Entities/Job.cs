@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 public class Job
 {
-    public string _id { get; set; }
-    public string name { get; set; }
-    public float children_cost{ get; set; }
-    public List<game_accounts> game_accounts { get; set; }
+    public string id { get; set; }
+    public string Job_card_name { get; set; }
+    public float Children_cost { get; set; }
+    public List<Game_accounts> Game_accounts { get; set; }
 
-    public Job(string _id, string name, float children_cost, List<game_accounts> gameAccounts)
+    public Job(string _id, string name, float children_cost, List<Game_accounts> gameAccounts)
     {
-        this.game_accounts = gameAccounts;
-        this._id = _id;
-        this.name = name;
-        this.children_cost = children_cost;
+        this.Game_accounts = gameAccounts;
+        this.id = _id;
+        this.Job_card_name = name;
+        this.Children_cost = children_cost;
     }
 
 }

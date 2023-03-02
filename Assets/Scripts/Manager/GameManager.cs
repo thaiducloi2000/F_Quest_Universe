@@ -25,8 +25,11 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
         Instance = this;
-        // change to Instantiate to list when moving to multilplayer 
-        Instantiate(PlayerPrefabs);
+        // change to Instantiate to list when moving to multilplayer
+        //for(int i = 0; i < 4; i++)
+        //{
+            Instantiate(PlayerPrefabs);
+        //}
     }
 
     private void Start()
@@ -42,6 +45,23 @@ public class GameManager : MonoBehaviour
     {
         foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
+            switch (playerList.Count)
+            {
+                case 0:
+                    player.GetComponent<Player>().myTurn = Turn.A;
+                    break;
+                case 1:
+                    player.GetComponent<Player>().myTurn = Turn.B;
+                    break;
+                case 2:
+                    player.GetComponent<Player>().myTurn = Turn.C;
+                    break;
+                case 3:
+                    player.GetComponent<Player>().myTurn = Turn.D;
+                    break;
+                default:
+                    break;
+            }
             playerList.Add(player.gameObject.GetComponent<Player>());
         }
     }
