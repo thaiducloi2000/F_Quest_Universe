@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public UI_Manager UI;
     public Financial financial_rp;
     public Job job;
+    public Turn myTurn;
 
     private void Start()
     {
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour
         Camera.main.transform.position = offset;
         //Camera.main.transform.LookAt(root);
 
-        //LoadAllJob();
+        LoadAllJob();
     }
 
 
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
         //Camera.main.transform.RotateAround(root.transform.position, Vector3.up, 15f * Time.deltaTime);
         //Camera.main.transform.position = offset;
         // Dress Key R to roll
-        if (Input.GetKeyDown(KeyCode.R) && !GameManager.Instance.isPlayerMoving)
+        if (Input.GetKeyDown(KeyCode.R) && !GameManager.Instance.isPlayerMoving /*&& GameManager.Instance.isTurn == myTurn*/)
         {
             // Role Dice
             int step = Random.Range(1, 7);
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
             {
                 StartCoroutine(this.gameObject.GetComponent<Step>().Move(this, step, GameBoard.Instance.Tiles_Rat_Race));
             }
+            GameManager.Instance.nextTurn();
         }
     }
 
@@ -76,14 +78,14 @@ public class Player : MonoBehaviour
     public void ApplyJobToFinancial(Job job)
     {
         float expense = 0;
-        foreach(game_accounts account in job.game_accounts)
+        foreach(Game_accounts account in job.Game_accounts)
         {
-            if(account.gameAccount_type == AccountType.Expense)
+            if(account.Game_account_type == AccountType.Expense)
             {
-                expense += account.gameAccount_cost;
+                expense += account.Game_account_value;
             }
         }
-        this.financial_rp = new Financial(child_amount,this.id,job._id,0, expense,job.game_accounts);
+        this.financial_rp = new Financial(child_amount,this.id,job.id,0, expense,job.Game_accounts);
     }
 
     public void MoveCameraOnCirle()
@@ -108,7 +110,7 @@ public class Player : MonoBehaviour
     private void LoadAllJob()
     {
         EvenCard_Data.instance.Job_List = new List<Job>();
-        StartCoroutine(EvenCard_Data.instance.helper.Get("MgJobCards/job", (request, process) =>
+        StartCoroutine(EvenCard_Data.instance.helper.Get("JobCards/job-card", (request, process) =>
         {
             List<Job> list = ParseJsonToListJob(request);
             foreach (Job job in list)

@@ -1,15 +1,15 @@
 
 public enum AccountType { Income,Expense,Asset,Liability}
-public class game_accounts
+public class Game_accounts
 {
-    public AccountType gameAccount_type { get; set; }
-    public string gameAccount_name { get; set; }
-    public float gameAccount_cost { get; set; }
+    public AccountType Game_account_type { get; set; }
+    public string Game_account_name { get; set; }
+    public float Game_account_value { get; set; }
 
 
     public virtual float Account_Balance()
     {
-        return this.gameAccount_cost;
+        return this.Game_account_value;
     }
 
 }

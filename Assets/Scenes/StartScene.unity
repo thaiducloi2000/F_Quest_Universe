@@ -325,9 +325,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attentionpanel: {fileID: 1027770701}
-  AttentionSuccesspanel: {fileID: 0}
-  Loginpanel: {fileID: 0}
-  Regiserpanel: {fileID: 0}
+  AttentionSuccesspanel: {fileID: 1568862142}
+  Loginpanel: {fileID: 459287}
+  Regiserpanel: {fileID: 1523940989}
 --- !u!1 &128132499
 GameObject:
   m_ObjectHideFlags: 0

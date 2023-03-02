@@ -5,7 +5,7 @@ using System.Collections;
 
 public class Server_Connection_Helper : MonoBehaviour 
 {
-    private const string BASE_URL = "http://www.mobilebasedcashflowapi.somee.com/api/";
+    private const string BASE_URL = "https://mobilebasedcashflowapi.herokuapp.com/api/";
 
     public IEnumerator Post(string endpoint, WWWForm form, Action<UnityWebRequest,float> callback)
     {

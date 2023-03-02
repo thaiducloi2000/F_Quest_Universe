@@ -26,26 +26,26 @@ public class Job_Panel : MonoBehaviour
     public void loadJobInformation(Job job)
     {
        
-        Job_Name.GetComponent<TextMeshProUGUI>().text = job.name;
-        foreach(game_accounts account in job.game_accounts)
+        Job_Name.GetComponent<TextMeshProUGUI>().text = job.Job_card_name;
+        foreach(Game_accounts account in job.Game_accounts)
         {
-            switch (account.gameAccount_type)
+            switch (account.Game_account_type)
             {
                 case AccountType.Income:
-                    Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.gameAccount_name + ": $" + account.gameAccount_cost + '\n';
-                    total_income += account.gameAccount_cost;
+                    Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    total_income += account.Game_account_value;
                     break;
                 case AccountType.Asset:
-                    Content_Assets.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.gameAccount_name + ": $" + account.gameAccount_cost + '\n';
-                    total_asset += account.gameAccount_cost;
+                    Content_Assets.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    total_asset += account.Game_account_value;
                     break;
                 case AccountType.Expense:
-                    Content_Expenses.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.gameAccount_name + ": $" + account.gameAccount_cost + '\n';
-                    total_expense += account.gameAccount_cost;
+                    Content_Expenses.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    total_expense += account.Game_account_value;
                     break;
                 case AccountType.Liability:
-                    Content_Liabilities.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.gameAccount_name + ": $" + account.gameAccount_cost + '\n';
-                    total_liability += account.gameAccount_cost;
+                    Content_Liabilities.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    total_liability += account.Game_account_value;
                     break;
                 default:
                     break;

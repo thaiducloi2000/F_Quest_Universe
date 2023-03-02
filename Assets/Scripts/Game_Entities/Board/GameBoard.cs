@@ -54,12 +54,12 @@ public class GameBoard : MonoBehaviour
         // Spawn Fat Race with Square
         Spawn_Fat_Race(NumberTiles_Fat_Race);
         // Set Event Type to All Race , TMP is RAT RACE
-        //Set_Tiles_Type();
+        Set_Tiles_Type();
     }
 
     public void Set_Tiles_Type()
     {
-        StartCoroutine(EvenCard_Data.instance.helper.Get("MgTiles/tile", (request,process) =>
+        StartCoroutine(EvenCard_Data.instance.helper.Get("Tiles/tile", (request,process) =>
         {
             //Debug.Log(request.downloadHandler.text);
             List<Tile_Entity> tiles = ParseJsonToListTile(request);

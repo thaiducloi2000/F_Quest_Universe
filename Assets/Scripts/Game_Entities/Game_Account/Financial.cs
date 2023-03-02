@@ -8,9 +8,9 @@ public class Financial
     public string job_card_id { get; set; }
     public float income_per_month { get; set; }
     public float expense_per_month { get; set; }
-    public List<game_accounts> game_accounts { get; set; }
+    public List<Game_accounts> game_accounts { get; set; }
 
-    public Financial(int children_amount, string user_id, string job_card_id, float income_per_month, float expense_per_month, List<game_accounts> game_accounts)
+    public Financial(int children_amount, string user_id, string job_card_id, float income_per_month, float expense_per_month, List<Game_accounts> game_accounts)
     {
         this.children_amount = children_amount;
         this.user_id = user_id;
@@ -23,22 +23,22 @@ public class Financial
     public float GetCash()
     {
         float cash = 0;
-        foreach (game_accounts accounts in game_accounts)
+        foreach (Game_accounts accounts in game_accounts)
         {
-            if (accounts.gameAccount_type == AccountType.Asset && accounts.gameAccount_name == "Tiền mặt")
+            if (accounts.Game_account_type == AccountType.Asset && accounts.Game_account_name == "cash")
             {
-                cash = accounts.gameAccount_cost;
+                cash = accounts.Game_account_value;
             }
         }
         return cash;
     }
     public void SetCash(float cash)
     {
-        foreach (game_accounts accounts in game_accounts)
+        foreach (Game_accounts accounts in game_accounts)
         {
-            if (accounts.gameAccount_type == AccountType.Asset && accounts.gameAccount_name == "Tiền mặt")
+            if (accounts.Game_account_type == AccountType.Asset && accounts.Game_account_name == "cash")
             {
-                accounts.gameAccount_cost = cash;
+                accounts.Game_account_value = cash;
             }
         }
     }
