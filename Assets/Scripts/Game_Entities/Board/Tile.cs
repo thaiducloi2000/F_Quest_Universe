@@ -27,7 +27,7 @@ public class Tile : MonoBehaviour
                 //titles.text = "Oppotunity";
                 break;
             case TileType.Market:
-                this.gameObject.GetComponent<Renderer>().material = material.oppotunity_material;
+                this.gameObject.GetComponent<Renderer>().material = material.offer_material;
                 //titles.text = "Oppotunity";
                 break;
             case TileType.Charity:
