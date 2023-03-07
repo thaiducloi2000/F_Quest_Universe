@@ -533,7 +533,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_HandleRect: {fileID: 7921104228140145515}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5393,7 +5393,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6951660834044314136}
+      - m_Target: {fileID: 2674575540578450646}
         m_TargetAssemblyTypeName: Market_Panel, Assembly-CSharp
         m_MethodName: AcceptMarket
         m_Mode: 1
@@ -5606,7 +5606,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6486882110958592406}
+      - m_Target: {fileID: 6212081418060415424}
         m_TargetAssemblyTypeName: Doodad_Panel, Assembly-CSharp
         m_MethodName: AcceptDoodad
         m_Mode: 1
@@ -7019,7 +7019,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7921104227140245054}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999976
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9576,7 +9576,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_HandleRect: {fileID: 6198465999038551739}
   m_Direction: 2
-  m_Value: 1.0000004
+  m_Value: 1.0000006
   m_Size: 0.43333337
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -13842,7 +13842,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8851074893853046820}
   - component: {fileID: 5369079179545345041}
-  - component: {fileID: 6486882110958592406}
+  - component: {fileID: 6212081418060415424}
   m_Layer: 5
   m_Name: Doodad
   m_TagString: Untagged
@@ -13882,6 +13882,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7977707244960089533}
   m_CullTransparentMesh: 0
+--- !u!114 &6212081418060415424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977707244960089533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2954f6f1a3e49d449cb8c31145a1aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: {fileID: 5069685618036867416}
+  Cost_Txt: {fileID: 1935049356541854781}
 --- !u!1 &7987533191834521078
 GameObject:
   m_ObjectHideFlags: 0
@@ -15006,7 +15020,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7689730248839680511}
   - component: {fileID: 2965277330386875492}
-  - component: {fileID: 6951660834044314136}
+  - component: {fileID: 2674575540578450646}
   m_Layer: 5
   m_Name: Market
   m_TagString: Untagged
@@ -15047,6 +15061,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9196714398015694523}
   m_CullTransparentMesh: 0
+--- !u!114 &2674575540578450646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9196714398015694523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e6290b112ec8d440b0d8a7277c20588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Title: {fileID: 8788335639999511657}
+  Description: {fileID: 6217096915727417731}
+  Cost_Txt: {fileID: 4774689157352053198}
 --- !u!1 &9199569747297383661
 GameObject:
   m_ObjectHideFlags: 0

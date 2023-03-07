@@ -145,8 +145,10 @@ public class GameBoard : MonoBehaviour
         }
         foreach(int i in tile.positions)
         {
-            Tiles_Rat_Race[i].GetComponent<Tile>().Type = type;
-            Tiles_Rat_Race[i].GetComponent<Tile>().SetMaterialTile(type, tile_avatar);
+            Tiles_Rat_Race[i].GetComponent<Tile>().Type = TileType.Market;
+            Tiles_Rat_Race[i].GetComponent<Tile>().SetMaterialTile(TileType.Market, tile_avatar);
+            //Tiles_Rat_Race[i].GetComponent<Tile>().Type = type;
+            //Tiles_Rat_Race[i].GetComponent<Tile>().SetMaterialTile(type, tile_avatar);
         }
     }
     private void Set_Fat_Race_Tile_Event(Tile_Entity tile)
