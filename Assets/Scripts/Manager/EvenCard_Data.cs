@@ -48,7 +48,7 @@ public class EvenCard_Data : MonoBehaviour
             //Debug.Log(string.Format("Downloaded Event Card Process {0:P1}", process * 100f + "%"));
             foreach (Event_card_Entity card in event_card)
             {
-                switch (card.event_type_id)
+                switch (card.Event_type_id)
                 {
                     case 1:
                         LoadBigDeal(card);
@@ -95,22 +95,22 @@ public class EvenCard_Data : MonoBehaviour
 
     private void LoadDoodad(Event_card_Entity card)
     {
-        Doodads.Add(new Doodad(card.event_name, card.event_description, card.cost,card.action));
+        Doodads.Add(new Doodad(card.Event_name, card.Account_Name,card.Event_description, card.Cost,card.Action));
     }
 
 
     private void LoadMarket(Event_card_Entity card)
     {
-        Markets.Add(new Market(card.event_name, card.event_description, card.cost,card.action));
+        Markets.Add(new Market(card.Event_name, card.Account_Name,card.Event_description, card.Cost,card.Action));
     }
 
     private void LoadBigDeal(Event_card_Entity card)
     {
-        Big_Deal_List.Add(new Big_Deal(card.event_name, card.event_description, card.cost, card.down_pay, card.trading_range, card.cash_flow,card.action));
+        Big_Deal_List.Add(new Big_Deal(card.Event_name,card.Account_Name,card.Event_description, card.Cost, card.Down_pay, card.Trading_range,card.Dept, card.Cash_flow,card.Action));
     }
 
     private void LoadSmallDeal(Event_card_Entity card)
     {   
-        Small_Deal_List.Add(new Small_Deal(card.event_name, card.event_description, card.cost, card.dept, card.cash_flow, card.down_pay,card.action));
+        Small_Deal_List.Add(new Small_Deal(card.Event_name, card.Account_Name,card.Event_description, card.Cost, card.Dept, card.Cash_flow, card.Down_pay,card.Action));
     }
 }

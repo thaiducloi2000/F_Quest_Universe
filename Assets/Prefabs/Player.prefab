@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 40000$/1Ap Br/2Ba
+  m_text: 40000$/1 Unit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4513e7ed22862854b98ee8c4d868e0ff, type: 2}
   m_sharedMaterial: {fileID: -4631582556702860931, guid: 4513e7ed22862854b98ee8c4d868e0ff, type: 2}
@@ -1458,7 +1458,6 @@ MonoBehaviour:
   Avatar: {fileID: 1750163530999635398}
   isInFatRace: 0
   child_amount: 0
-  cash: 0
   UI: {fileID: 7921104226558755954}
   myTurn: 0
 --- !u!114 &1750163529464388846
@@ -5317,7 +5316,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7194310162358802333}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6951660834044314136}
+        m_TargetAssemblyTypeName: Market_Panel, Assembly-CSharp
+        m_MethodName: AcceptMarket
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6909768086147524583
 GameObject:
   m_ObjectHideFlags: 0
@@ -5518,7 +5529,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6246476179288552463}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6486882110958592406}
+        m_TargetAssemblyTypeName: Doodad_Panel, Assembly-CSharp
+        m_MethodName: AcceptDoodad
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7270829666765377047
 GameObject:
   m_ObjectHideFlags: 0
@@ -6795,6 +6818,8 @@ MonoBehaviour:
   Select_Deal_Type_Panel: {fileID: 7921104227628251294}
   Job_Panel: {fileID: 7921104227787224447}
   Financial_Panel: {fileID: 7921104227706629017}
+  Market_Panel: {fileID: 9196714398015694523}
+  Doodad_Panel: {fileID: 7977707244960089533}
   player: {fileID: 1750163529464388841}
 --- !u!1 &7921104226584675965
 GameObject:
@@ -13707,6 +13732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8851074893853046820}
   - component: {fileID: 5369079179545345041}
+  - component: {fileID: 6486882110958592406}
   m_Layer: 5
   m_Name: Doodad
   m_TagString: Untagged
@@ -13746,6 +13772,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7977707244960089533}
   m_CullTransparentMesh: 1
+--- !u!114 &6486882110958592406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977707244960089533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2954f6f1a3e49d449cb8c31145a1aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: {fileID: 5069685618036867416}
+  Cost_Txt: {fileID: 1935049356541854781}
 --- !u!1 &7987533191834521078
 GameObject:
   m_ObjectHideFlags: 0
@@ -14870,6 +14910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7689730248839680511}
   - component: {fileID: 2965277330386875492}
+  - component: {fileID: 6951660834044314136}
   m_Layer: 5
   m_Name: Market
   m_TagString: Untagged
@@ -14910,6 +14951,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9196714398015694523}
   m_CullTransparentMesh: 1
+--- !u!114 &6951660834044314136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9196714398015694523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e6290b112ec8d440b0d8a7277c20588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Title: {fileID: 8788335639999511657}
+  Description: {fileID: 6217096915727417731}
+  Cost_Txt: {fileID: 4774689157352053198}
 --- !u!1 &9199569747297383661
 GameObject:
   m_ObjectHideFlags: 0

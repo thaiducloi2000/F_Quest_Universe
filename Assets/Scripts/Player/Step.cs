@@ -76,17 +76,19 @@ public class Step : MonoBehaviour
 
     void PopupPanel(Tile tile)
     {
+
+        UI_Manager ui = GetComponentInChildren<UI_Manager>();
         // Compare cuurent position to popup panel 
         // Oppotunity, Charity, PayCheck, Offer,DownSize,Doodads
         switch (tile.Type)
         {
             case TileType.Oppotunity:
-                UI_Manager ui = GetComponentInChildren<UI_Manager>();
                 ui.PopUpDeal_UI();
                 break;
             case TileType.Market:
                 //UI_Manager.Instance.PopUpDeal_UI();
-                Debug.Log(EvenCard_Data.instance.Markets[Random.Range(0, EvenCard_Data.instance.Markets.Count)].Title);
+                Market market =  EvenCard_Data.instance.Markets[Random.Range(0, EvenCard_Data.instance.Markets.Count-1)];
+                ui.Popup_Market_Panel(market);
                 break;
             case TileType.Baby:
                 Baby();
@@ -101,7 +103,8 @@ public class Step : MonoBehaviour
                 break;
             case TileType.Doodads:
                 //UI_Manager.Instance.PopUpDeal_UI();
-                Doodad doodad = EvenCard_Data.instance.Doodads[Random.Range(0, EvenCard_Data.instance.Doodads.Count)];
+                Doodad doodad = EvenCard_Data.instance.Doodads[Random.Range(0, EvenCard_Data.instance.Doodads.Count-1)];
+                ui.Popup_Doodad_Panel(doodad);
                 Doodads(doodad);
                 break;
             default:

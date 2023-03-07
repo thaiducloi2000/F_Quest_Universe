@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public GameObject Avatar;
     public bool isInFatRace = false;
     public int child_amount = 0;
-    public float cash;
+    //public float cash;
     public UI_Manager UI;
     public Financial financial_rp;
     public Job job;
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         //setting camera 
         this.transform.position = Vector3.zero;
         root = GameBoard.Instance.Root.transform;
-        offset = new Vector3(-GameBoard.Instance.size * 8f, GameBoard.Instance.size * 8f, -1.5f);
+        offset = new Vector3(-GameBoard.Instance.size * 9f, GameBoard.Instance.size * 8f, 0f);
         //offset = new Vector3(0, 7, -9f);
         Camera.main.transform.position = offset;
         //Camera.main.transform.LookAt(root);
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
                 expense += account.Game_account_value;
             }
         }
-        this.financial_rp = new Financial(child_amount,this.id,job.id,0, expense,job.Game_accounts);
+        this.financial_rp = new Financial(child_amount,this.id,job.Job_card_name,0, expense,job.Game_accounts);
     }
 
     public void MoveCameraOnCirle()
