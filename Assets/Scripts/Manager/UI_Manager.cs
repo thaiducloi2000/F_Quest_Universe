@@ -11,6 +11,8 @@ public class UI_Manager : MonoBehaviour
     public GameObject Select_Deal_Type_Panel;
     public GameObject Job_Panel;
     public GameObject Financial_Panel;
+    public GameObject Market_Panel;
+    public GameObject Doodad_Panel;
     private int b_deal = -1;
     private int s_deal = -1;
     [SerializeField] Player player;
@@ -18,6 +20,11 @@ public class UI_Manager : MonoBehaviour
     private void Start()
     {
         UnAcctiveAllPanel();
+        if(player == null)
+        {
+            
+            player = GetComponentInParent<Player>();
+        }
     }
 
 
@@ -30,6 +37,8 @@ public class UI_Manager : MonoBehaviour
     {
         Deal_Panel.SetActive(false);
         Select_Deal_Type_Panel.SetActive(false);
+        Doodad_Panel.SetActive(false);
+        Market_Panel.SetActive(false);
         Job_Panel.SetActive(true);
     }
 
@@ -61,10 +70,26 @@ public class UI_Manager : MonoBehaviour
         else if (s_deal >= 0)
         {
             //player.MoveToFatRace();
-            ApplySmallDeal(EvenCard_Data.instance.Small_Deal_List[b_deal]);
+            ApplySmallDeal(EvenCard_Data.instance.Small_Deal_List[s_deal]);
         }
         Deal_Panel.SetActive(false);
         Reset_Deal();
+    }
+
+    public void Popup_Market_Panel(Market market)
+    {
+        Market_Panel.SetActive(true);
+
+        Market_Panel panel = Market_Panel.GetComponent<Market_Panel>();
+        panel.SetMarketPanel(market);
+    }
+
+    public void Popup_Doodad_Panel(Doodad doodad)
+    {
+        Doodad_Panel.SetActive(true);
+
+        Doodad_Panel panel = Doodad_Panel.GetComponent<Doodad_Panel>();
+        panel.SetDoodadPanel(doodad);
     }
 
 
@@ -87,12 +112,35 @@ public class UI_Manager : MonoBehaviour
         {
             case 1:
                 player.financial_rp.SetCash(player.financial_rp.GetCash()-deal.Cost);
+                Income game_Accounts = new Income(deal.Account_Name, deal.Cash_flow);
+                player.financial_rp.game_accounts.Add(game_Accounts);
                 break;
             case 3:
+                //foreach(Game_accounts game_accounts in player.financial_rp.game_accounts)
+                //{
+                //    if (game_accounts.Game_account_name.Contains(deal.Account_Name))
+                //    {
+                        player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Cost);
+                //    }
+                //}
                 break;
             case 4:
+                foreach(Game_accounts game_accounts in player.financial_rp.game_accounts)
+                {
+                    if(game_accounts.Game_account_name.Contains(deal.Account_Name))
+                    {
+                        game_accounts.Game_account_value /= 2;
+                    }
+                }
                 break;
             case 5:
+                foreach (Game_accounts game_accounts in player.financial_rp.game_accounts)
+                {
+                    if (game_accounts.Game_account_name.Contains(deal.Account_Name))
+                    {
+                        game_accounts.Game_account_value *= 2;
+                    }
+                }
                 break;
             default:
                 break;
@@ -104,12 +152,43 @@ public class UI_Manager : MonoBehaviour
         switch (deal.Action)
         {
             case 1:
+                player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Cost);
+                if (deal.Cash_flow == 0)
+                {
+                    Asset game_Accounts = new Asset(deal.Account_Name, deal.Cash_flow);
+                    player.financial_rp.game_accounts.Add(game_Accounts);
+                }else if(deal.Cash_flow > 0)
+                {
+                    Income game_Accounts = new Income(deal.Account_Name, deal.Cash_flow);
+                    player.financial_rp.game_accounts.Add(game_Accounts);
+                }
                 break;
             case 3:
+                foreach (Game_accounts game_accounts in player.financial_rp.game_accounts)
+                {
+                    if (game_accounts.Game_account_name.Contains(deal.Account_Name))
+                    {
+                        player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Cost);
+                    }
+                }
                 break;
             case 4:
+                foreach (Game_accounts game_accounts in player.financial_rp.game_accounts)
+                {
+                    if (game_accounts.Game_account_name.Contains(deal.Account_Name))
+                    {
+                        game_accounts.Game_account_value /= 2;
+                    }
+                }
                 break;
             case 5:
+                foreach (Game_accounts game_accounts in player.financial_rp.game_accounts)
+                {
+                    if (game_accounts.Game_account_name.Contains(deal.Account_Name))
+                    {
+                        game_accounts.Game_account_value *= 2;
+                    }
+                }
                 break;
             default:
                 break;

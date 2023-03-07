@@ -29,7 +29,7 @@ public class Deal_Panel : MonoBehaviour
         this.Description.text = deal.Description;
         this.Cost_Txt.text = "Cost : " + deal.Cost.ToString();
         this.Mortgage_Divined_Txt.text = "Divined : " + deal.Mortgage;
-        this.CashFlow_TradingRange_Txt.text = "Trading Range : " + deal.Cashflow;
+        this.CashFlow_TradingRange_Txt.text = "Trading Range : " + deal.Cash_flow;
         this.DownSize_Share_Owned_Txt.text = "Share Owned : " + deal.Downsize;
     }
     

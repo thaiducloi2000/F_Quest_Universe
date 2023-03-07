@@ -128,11 +128,13 @@ public class GameBoard : MonoBehaviour
                 type = TileType.PayCheck;
                 break;
             case "Get A Child":
+                type = TileType.Baby;
+                break;
             case "DowSize":
                 type = TileType.DownSize;
                 break;
             case "The Market":
-                type = TileType.Doodads;
+                type = TileType.Market;
                 break;
             case "Charity":
                 type = TileType.Charity;
@@ -144,7 +146,7 @@ public class GameBoard : MonoBehaviour
         foreach(int i in tile.positions)
         {
             Tiles_Rat_Race[i].GetComponent<Tile>().Type = type;
-            Tiles_Rat_Race[i].GetComponent<Tile>().SetMaterialTile(type,tile_avatar);
+            Tiles_Rat_Race[i].GetComponent<Tile>().SetMaterialTile(type, tile_avatar);
         }
     }
     private void Set_Fat_Race_Tile_Event(Tile_Entity tile)

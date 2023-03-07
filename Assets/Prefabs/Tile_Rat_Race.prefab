@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2224387586859749881}
+  - component: {fileID: 1696219465569110662}
   - component: {fileID: 2986246285777919580}
   - component: {fileID: 1050940036864780950}
   - component: {fileID: 1555232899658156864}
@@ -20,21 +20,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2224387586859749881
-Transform:
+--- !u!224 &1696219465569110662
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555232899658156867}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50.642715, y: 5, z: 150}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0, y: 0.075}
+  m_SizeDelta: {x: 2251, y: 2251}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!33 &2986246285777919580
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -63,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b735010420ee591449a75a4dcde68939, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,5 +117,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  titles: {fileID: 0}
   default_material: {fileID: 11400000, guid: 7e7890eaa5311674da1844ff8b9ea6f6, type: 2}
