@@ -19,11 +19,17 @@ public class Login : MonoBehaviour
     }
 
     public void checkLogin()
-    {
-        if (!user_inputfield.text.Equals("LongDK") && !password_inputfield.text.Equals("1234"))
+        
+{
+        if (user_inputfield.text == "" || password_inputfield.text == "")
         {
             Attentionpanel.SetActive(true);
-            TextAttention.text = "DCMMM";
+            TextAttention.text = "No box can be left blank";
+        }
+        else if (!user_inputfield.text.Equals("LongDK") || !password_inputfield.text.Equals("1234"))
+        {
+            Attentionpanel.SetActive(true);
+            TextAttention.text = "Wrong username or password";
         }
         else
         {
