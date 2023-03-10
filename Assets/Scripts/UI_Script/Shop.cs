@@ -11,4 +11,9 @@ public class Shop : MonoBehaviour
         Shoppanel.SetActive(true);
     }
 
+    public void closeShop()
+    {
+        Shoppanel.SetActive(false);
+    }
+
 }
