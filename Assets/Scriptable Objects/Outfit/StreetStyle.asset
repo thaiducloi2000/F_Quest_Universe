@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36110fc6d013f1245804404db98fc987, type: 3}
   m_Name: StreetStyle
   m_EditorClassIdentifier: 
-  name: StreetStyle
-  price: 86
+  name: StreetStyle2
+  price: 99
   image: {fileID: 21300000, guid: 5f8ea09f006e2c7479c393cb3879e4cd, type: 3}
