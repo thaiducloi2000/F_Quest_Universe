@@ -43,6 +43,10 @@ public class Player : MonoBehaviour
         //Camera.main.transform.RotateAround(root.transform.position, Vector3.up, 15f * Time.deltaTime);
         //Camera.main.transform.position = offset;
         // Dress Key R to roll
+        if (isInFatRace)
+        {
+            MoveToFatRace();
+        }
         if (Input.GetKeyDown(KeyCode.R) && !GameManager.Instance.isPlayerMoving /*&& GameManager.Instance.isTurn == myTurn*/)
         {
             // Role Dice
@@ -86,6 +90,8 @@ public class Player : MonoBehaviour
             }
         }
         this.financial_rp = new Financial(child_amount,this.id,job.Job_card_name,0, expense,job.Game_accounts);
+
+        isInFatRace = financial_rp.GetPassiveIncome();
     }
 
     public void MoveCameraOnCirle()
