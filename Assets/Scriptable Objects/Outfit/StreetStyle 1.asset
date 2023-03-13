@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36110fc6d013f1245804404db98fc987, type: 3}
-  m_Name: FPTUni
+  m_Name: StreetStyle 1
   m_EditorClassIdentifier: 
-  name: FPT Uniform 2023
-  price: 69
+  name: StreetStyle
+  price: 86
+  image: {fileID: 21300000, guid: 5f8ea09f006e2c7479c393cb3879e4cd, type: 3}
