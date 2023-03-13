@@ -62,16 +62,17 @@ public class UI_Manager : MonoBehaviour
     public void Accept_Deal_Btn()
     {
         
-        if(b_deal >= 0)
+        if(b_deal >= 0 && player.financial_rp.GetCash() >= EvenCard_Data.instance.Big_Deal_List[b_deal].Cost)
         {
             //player.MoveToFatRace();
             ApplyBigDeal(EvenCard_Data.instance.Big_Deal_List[b_deal]);
         }
-        else if (s_deal >= 0)
+        else if (s_deal >= 0 && player.financial_rp.GetCash() >= EvenCard_Data.instance.Small_Deal_List[s_deal].Cost)
         {
             //player.MoveToFatRace();
             ApplySmallDeal(EvenCard_Data.instance.Small_Deal_List[s_deal]);
         }
+        player.isInFatRace = player.financial_rp.GetPassiveIncome();
         Deal_Panel.SetActive(false);
         Reset_Deal();
     }
