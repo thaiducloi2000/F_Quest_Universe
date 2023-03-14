@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,9 +52,9 @@ public class Job_Panel : MonoBehaviour
             }
         }
         this.job = job;
-        total_Income.text = "Tong Thu Nhap: " + total_income;
-        total_Asset.text = "Tong Tai San: " + total_asset;
-        total_Expense.text = "Tong Chi Phi: " + total_expense;
-        total_Liabilities.text = "Tong No : " + total_liability;
+        total_Income.text = "Tổng Thu nhập: " + total_income;
+        total_Asset.text = "Tổng tài sản: " + total_asset;
+        total_Expense.text = "Tổng chi phí: " + total_expense;
+        total_Liabilities.text = "Tổng Nợ: " + total_liability;
     }
 }
