@@ -42,28 +42,26 @@ public class Player : MonoBehaviour
         MoveCameraOnCirle();
         //Camera.main.transform.RotateAround(root.transform.position, Vector3.up, 15f * Time.deltaTime);
         //Camera.main.transform.position = offset;
-        // Dress Key R to roll
+    }
+
+    public void Roll_Dice()
+    {
+        // Dress Key button to roll
+        // Role Dice
+        int step = Random.Range(1, 7);
+        // Test
+        Debug.Log("Dice : " + step);
+        // Move
         if (isInFatRace)
         {
-            MoveToFatRace();
+            StartCoroutine(this.gameObject.GetComponent<Step>().Move(this, step, GameBoard.Instance.Tiles_Fat_Race));
         }
-        if (Input.GetKeyDown(KeyCode.R) && !GameManager.Instance.isPlayerMoving /*&& GameManager.Instance.isTurn == myTurn*/)
+        else
         {
-            // Role Dice
-            int step = Random.Range(1, 7);
-            // Test
-            Debug.Log("Dice : " + step);
-            // Move
-            if(isInFatRace)
-            {
-                StartCoroutine(this.gameObject.GetComponent<Step>().Move(this, step, GameBoard.Instance.Tiles_Fat_Race));
-            }
-            else
-            {
-                StartCoroutine(this.gameObject.GetComponent<Step>().Move(this, step, GameBoard.Instance.Tiles_Rat_Race));
-            }
-            GameManager.Instance.nextTurn();
+            StartCoroutine(this.gameObject.GetComponent<Step>().Move(this, step, GameBoard.Instance.Tiles_Rat_Race));
         }
+        
+        GameManager.Instance.nextTurn();
     }
 
     public void SelectJoB()
@@ -91,7 +89,6 @@ public class Player : MonoBehaviour
         }
         this.financial_rp = new Financial(child_amount,this.id,job.Job_card_name,0, expense,job.Game_accounts);
 
-        isInFatRace = financial_rp.GetPassiveIncome();
     }
 
     public void MoveCameraOnCirle()

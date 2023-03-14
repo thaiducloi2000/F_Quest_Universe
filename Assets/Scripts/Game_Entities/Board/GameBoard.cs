@@ -130,7 +130,7 @@ public class GameBoard : MonoBehaviour
             case "Get A Child":
                 type = TileType.Baby;
                 break;
-            case "DowSize":
+            case "DownSize":
                 type = TileType.DownSize;
                 break;
             case "The Market":
@@ -138,6 +138,9 @@ public class GameBoard : MonoBehaviour
                 break;
             case "Charity":
                 type = TileType.Charity;
+                break;
+            case "Doodad":
+                type = TileType.Doodads;
                 break;
             default:
                 type = TileType.Oppotunity;
@@ -156,13 +159,13 @@ public class GameBoard : MonoBehaviour
         TileType type;
         switch (tile.tile_type)
         {
-            case "PayCheck":
+            case "CashFlowDay":
                 type = TileType.PayCheck;
                 break;
-            case "Get A Child":
+            case "Divorce":
                 type = TileType.Baby;
                 break;
-            case "DownSize":
+            case "Dream":
                 type = TileType.DownSize;
                 break;
             case "Charity":
@@ -171,7 +174,7 @@ public class GameBoard : MonoBehaviour
             case "The Market":
                 type = TileType.Market;
                 break;
-            case "Doodad":
+            case "accused":
                 type = TileType.Doodads;
                 break;
             default:

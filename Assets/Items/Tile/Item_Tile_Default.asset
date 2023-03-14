@@ -20,4 +20,5 @@ MonoBehaviour:
   offer_material: {fileID: 2100000, guid: 2de177444e08da34e8b7231a148e875a, type: 2}
   downsize_material: {fileID: 2100000, guid: c5d1b23129531c446a28463a40a00141, type: 2}
   doodads_material: {fileID: 2100000, guid: 9fe4b0c95afac554289165440515fb79, type: 2}
+  baby_material: {fileID: 2100000, guid: 1f5a82e9e6f8dbd45b527fb5e2c33c48, type: 2}
   default_material: {fileID: 2100000, guid: b735010420ee591449a75a4dcde68939, type: 2}
