@@ -52,7 +52,7 @@ public class Step : MonoBehaviour
             yield break;
         }
         GameManager.Instance.isPlayerMoving = true;
-        currentPos++;
+        //currentPos++;
         currentPos %= GameBoard.Instance.Tiles_Fat_Race.Count;
         Vector3 nextPos = GameBoard.Instance.Tiles_Fat_Race[0].transform.position;
         nextPos.y = 0.25f;

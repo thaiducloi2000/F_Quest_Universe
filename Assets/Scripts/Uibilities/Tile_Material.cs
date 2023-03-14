@@ -16,5 +16,6 @@ public class Tile_Material : ScriptableObject
     public Material offer_material;
     public Material downsize_material;
     public Material doodads_material;
+    public Material baby_material;
     public Material default_material;
 }

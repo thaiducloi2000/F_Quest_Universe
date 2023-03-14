@@ -62,17 +62,22 @@ public class UI_Manager : MonoBehaviour
     public void Accept_Deal_Btn()
     {
         
-        if(b_deal >= 0 && player.financial_rp.GetCash() >= EvenCard_Data.instance.Big_Deal_List[b_deal].Cost)
+        if(b_deal >= 0 /* && (player.financial_rp.GetCash() >= EvenCard_Data.instance.Big_Deal_List[b_deal].Cost || player.financial_rp.GetCash() >= EvenCard_Data.instance.Big_Deal_List[b_deal].Downpay)*/)
         {
             //player.MoveToFatRace();
             ApplyBigDeal(EvenCard_Data.instance.Big_Deal_List[b_deal]);
         }
-        else if (s_deal >= 0 && player.financial_rp.GetCash() >= EvenCard_Data.instance.Small_Deal_List[s_deal].Cost)
+        else if (s_deal >= 0 /*&& player.financial_rp.GetCash() >= EvenCard_Data.instance.Small_Deal_List[s_deal].Cost || player.financial_rp.GetCash() >= EvenCard_Data.instance.Small_Deal_List[s_deal].Downsize*/)
         {
             //player.MoveToFatRace();
             ApplySmallDeal(EvenCard_Data.instance.Small_Deal_List[s_deal]);
         }
-        player.isInFatRace = player.financial_rp.GetPassiveIncome();
+        if (player.financial_rp.GetPassiveIncome() && player.isInFatRace == false)
+        {
+
+            player.isInFatRace = player.financial_rp.GetPassiveIncome();
+            player.MoveToFatRace();
+        }
         Deal_Panel.SetActive(false);
         Reset_Deal();
     }
@@ -112,12 +117,36 @@ public class UI_Manager : MonoBehaviour
         switch (deal.Action)
         {
             case 1:
-                player.financial_rp.SetCash(player.financial_rp.GetCash()-deal.Cost);
-                Income game_Accounts = new Income(deal.Account_Name, deal.Cash_flow);
-                player.financial_rp.game_accounts.Add(game_Accounts);
+                if (deal.Downpay > 0)
+                {
+                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Downpay);
+                }
+                else if (deal.Downpay == deal.Cost)
+                {
+                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Downpay);
+                }
+                else
+                {
+                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Cost);
+                }
+                // Add Game Account
+                if (deal.Cash_flow == 0)
+                {
+                    Asset game_Accounts = new Asset(deal.Account_Name, deal.Cost);
+                    player.financial_rp.game_accounts.Add(game_Accounts);
+                }
+                else if (deal.Cash_flow > 0 && deal.Downpay < deal.Cost)
+                {
+                    Income income = new Income(deal.Account_Name, deal.Cash_flow);
+                    Liability lia = new Liability(deal.Account_Name, deal.Dept);
+                    Asset asset = new Asset(deal.Account_Name, deal.Cost);
+                    player.financial_rp.game_accounts.Add(income);
+                    player.financial_rp.game_accounts.Add(lia);
+                    player.financial_rp.game_accounts.Add(asset);
+                }
                 break;
             case 3:
-                //foreach(Game_accounts game_accounts in player.financial_rp.game_accounts)
+                //foreach (Game_accounts game_accounts in player.financial_rp.game_accounts)
                 //{
                 //    if (game_accounts.Game_account_name.Contains(deal.Account_Name))
                 //    {
@@ -153,15 +182,32 @@ public class UI_Manager : MonoBehaviour
         switch (deal.Action)
         {
             case 1:
-                player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Cost);
+
+                // check Down Pay - > Cost
+                if(deal.Downsize > 0)
+                {
+                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Downsize);
+                }else if(deal.Downsize == deal.Cost)
+                {
+                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Downsize);
+                }
+                else
+                {
+                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Cost);
+                }
+                // Add Game Account
                 if (deal.Cash_flow == 0)
                 {
-                    Asset game_Accounts = new Asset(deal.Account_Name, deal.Cash_flow);
+                    Asset game_Accounts = new Asset(deal.Account_Name, deal.Cost);
                     player.financial_rp.game_accounts.Add(game_Accounts);
-                }else if(deal.Cash_flow > 0)
+                }else if(deal.Cash_flow > 0 && deal.Downsize < deal.Cost)
                 {
-                    Income game_Accounts = new Income(deal.Account_Name, deal.Cash_flow);
-                    player.financial_rp.game_accounts.Add(game_Accounts);
+                    Income income = new Income(deal.Account_Name, deal.Cash_flow);
+                    Liability lia = new Liability(deal.Account_Name, deal.Dept);
+                    Asset asset = new Asset(deal.Account_Name, deal.Cost);
+                    player.financial_rp.game_accounts.Add(income);
+                    player.financial_rp.game_accounts.Add(lia);
+                    player.financial_rp.game_accounts.Add(asset);
                 }
                 break;
             case 3:

@@ -111,6 +111,6 @@ public class EvenCard_Data : MonoBehaviour
 
     private void LoadSmallDeal(Event_card_Entity card)
     {   
-        Small_Deal_List.Add(new Small_Deal(card.Event_name, card.Account_Name,card.Event_description, card.Cost, card.Dept, card.Cash_flow, card.Down_pay,card.Action));
+        Small_Deal_List.Add(new Small_Deal(card.Event_name, card.Account_Name,card.Event_description, card.Cost, card.Dept, card.Cash_flow, card.Down_pay,card.Trading_range,card.Action));
     }
 }

@@ -39,7 +39,7 @@ public class Tile : MonoBehaviour
                 //titles.text = "PayCheck";
                 break;
             case TileType.Baby:
-                this.gameObject.GetComponent<Renderer>().material = material.offer_material;
+                this.gameObject.GetComponent<Renderer>().material = material.baby_material;
                 //titles.text = "Have Baby";
                 break;
             case TileType.DownSize:
