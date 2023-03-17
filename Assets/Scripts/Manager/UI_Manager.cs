@@ -13,6 +13,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject Financial_Panel;
     public GameObject Market_Panel;
     public GameObject Doodad_Panel;
+    public GameObject Roll_Button;
     private int b_deal = -1;
     private int s_deal = -1;
     [SerializeField] Player player;
@@ -26,6 +27,11 @@ public class UI_Manager : MonoBehaviour
             player = GetComponentInParent<Player>();
         }
     }
+
+    //private void Update()
+    //{
+        
+    //}
 
 
     public void PopupJob_UI(Job job)
@@ -70,7 +76,7 @@ public class UI_Manager : MonoBehaviour
         else if (s_deal >= 0 /*&& player.financial_rp.GetCash() >= EvenCard_Data.instance.Small_Deal_List[s_deal].Cost || player.financial_rp.GetCash() >= EvenCard_Data.instance.Small_Deal_List[s_deal].Downsize*/)
         {
             //player.MoveToFatRace();
-            ApplySmallDeal(EvenCard_Data.instance.Small_Deal_List[s_deal]);
+            ApplySmallDeal(EvenCard_Data.instance.Small_Deal_List[s_deal],1);
         }
         if (player.financial_rp.GetPassiveIncome() && player.isInFatRace == false)
         {
@@ -132,14 +138,14 @@ public class UI_Manager : MonoBehaviour
                 // Add Game Account
                 if (deal.Cash_flow == 0)
                 {
-                    Asset game_Accounts = new Asset(deal.Account_Name, deal.Cost);
+                    Asset game_Accounts = new Asset(deal.Account_Name, deal.Cost,1);
                     player.financial_rp.game_accounts.Add(game_Accounts);
                 }
                 else if (deal.Cash_flow > 0 && deal.Downpay < deal.Cost)
                 {
-                    Income income = new Income(deal.Account_Name, deal.Cash_flow);
-                    Liability lia = new Liability(deal.Account_Name, deal.Dept);
-                    Asset asset = new Asset(deal.Account_Name, deal.Cost);
+                    Income income = new Income(deal.Account_Name, deal.Cash_flow,1);
+                    Liability lia = new Liability(deal.Account_Name, deal.Dept,1);
+                    Asset asset = new Asset(deal.Account_Name, deal.Cost,1);
                     player.financial_rp.game_accounts.Add(income);
                     player.financial_rp.game_accounts.Add(lia);
                     player.financial_rp.game_accounts.Add(asset);
@@ -177,7 +183,7 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
-    private void ApplySmallDeal(Small_Deal deal)
+    private void ApplySmallDeal(Small_Deal deal,int amount)
     {
         switch (deal.Action)
         {
@@ -186,25 +192,25 @@ public class UI_Manager : MonoBehaviour
                 // check Down Pay - > Cost
                 if(deal.Downsize > 0)
                 {
-                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Downsize);
+                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Downsize * amount);
                 }else if(deal.Downsize == deal.Cost)
                 {
-                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Downsize);
+                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Downsize*amount);
                 }
                 else
                 {
-                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Cost);
+                    player.financial_rp.SetCash(player.financial_rp.GetCash() - deal.Cost*amount);
                 }
                 // Add Game Account
                 if (deal.Cash_flow == 0)
                 {
-                    Asset game_Accounts = new Asset(deal.Account_Name, deal.Cost);
+                    Asset game_Accounts = new Asset(deal.Account_Name, deal.Cost, amount);
                     player.financial_rp.game_accounts.Add(game_Accounts);
                 }else if(deal.Cash_flow > 0 && deal.Downsize < deal.Cost)
                 {
-                    Income income = new Income(deal.Account_Name, deal.Cash_flow);
-                    Liability lia = new Liability(deal.Account_Name, deal.Dept);
-                    Asset asset = new Asset(deal.Account_Name, deal.Cost);
+                    Income income = new Income(deal.Account_Name, deal.Cash_flow, amount);
+                    Liability lia = new Liability(deal.Account_Name, deal.Dept, amount);
+                    Asset asset = new Asset(deal.Account_Name, deal.Cost, amount);
                     player.financial_rp.game_accounts.Add(income);
                     player.financial_rp.game_accounts.Add(lia);
                     player.financial_rp.game_accounts.Add(asset);

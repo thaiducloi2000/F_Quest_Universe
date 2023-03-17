@@ -22,3 +22,10 @@ MonoBehaviour:
   doodads_material: {fileID: 2100000, guid: 9fe4b0c95afac554289165440515fb79, type: 2}
   baby_material: {fileID: 2100000, guid: 1f5a82e9e6f8dbd45b527fb5e2c33c48, type: 2}
   default_material: {fileID: 2100000, guid: b735010420ee591449a75a4dcde68939, type: 2}
+  oppotunity_material_img: {fileID: 2100000, guid: 8e11a24334e3d1744ac0db4023ce5a38, type: 2}
+  charity_material_img: {fileID: 2100000, guid: 671fa97c753a2da4ab13d9825bc700e0, type: 2}
+  paycheck_material_img: {fileID: 2100000, guid: dfd7d86c93090844eb905f619855b63d, type: 2}
+  offer_material_img: {fileID: 2100000, guid: 34b80a698b09bb041974fcac7beac19d, type: 2}
+  downsize_material_img: {fileID: 2100000, guid: 33c0a0fd65628d346876bbc550f1437f, type: 2}
+  doodads_material_img: {fileID: 2100000, guid: 7a11c0d7db9a18844a5c5104bd48d0a6, type: 2}
+  baby_material_img: {fileID: 2100000, guid: a2443d9e95250294eadb81dca2eb5619, type: 2}

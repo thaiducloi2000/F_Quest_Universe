@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     // Add Avatar
     public GameObject Avatar;
     public bool isInFatRace = false;
-    public int child_amount = 0;
+    public float Children_cost = 0;
     //public float cash;
     public UI_Manager UI;
     public Financial financial_rp;
@@ -87,7 +87,8 @@ public class Player : MonoBehaviour
                 expense += account.Game_account_value;
             }
         }
-        this.financial_rp = new Financial(child_amount,this.id,job.Job_card_name,0, expense,job.Game_accounts);
+        this.Children_cost = job.Children_cost;
+        this.financial_rp = new Financial(0,this.id,job.Job_card_name,0, expense,job.Game_accounts);
 
     }
 

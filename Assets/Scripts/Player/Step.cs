@@ -165,9 +165,16 @@ public class Step : MonoBehaviour
 
     private void Baby()
     {
-        if(player.child_amount < 3)
+        if(player.financial_rp.children_amount < 3)
         {
-            player.child_amount++;
+            player.financial_rp.children_amount++;
+        }
+        foreach(Game_accounts account in player.financial_rp.game_accounts)
+        {
+            if(account.Game_account_name == "Child rearing costs")
+            {
+                account.Game_account_value = player.financial_rp.children_amount * player.Children_cost;
+            }
         }
     }
 }
