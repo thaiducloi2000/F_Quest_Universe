@@ -10,6 +10,7 @@ public class Tile : MonoBehaviour
     public TileType Type;
     //public TextMeshPro titles;
     public Tile_Material default_material;
+    public GameObject image;
 
     private void Start()
     {
@@ -24,30 +25,37 @@ public class Tile : MonoBehaviour
         {
             case TileType.Oppotunity:
                 this.gameObject.GetComponent<Renderer>().material = material.oppotunity_material;
+                this.image.gameObject.GetComponent<Renderer>().material = material.oppotunity_material_img;
                 //titles.text = "Oppotunity";
                 break;
             case TileType.Market:
                 this.gameObject.GetComponent<Renderer>().material = material.offer_material;
+                this.image.gameObject.GetComponent<Renderer>().material = material.offer_material_img;
                 //titles.text = "Oppotunity";
                 break;
             case TileType.Charity:
                 this.gameObject.GetComponent<Renderer>().material = material.charity_material;
+                this.image.gameObject.GetComponent<Renderer>().material = material.charity_material_img;
                 //titles.text = "Charity";
                 break;
             case TileType.PayCheck:
                 this.gameObject.GetComponent<Renderer>().material = material.paycheck_material;
+                this.image.gameObject.GetComponent<Renderer>().material = material.paycheck_material_img;
                 //titles.text = "PayCheck";
                 break;
             case TileType.Baby:
                 this.gameObject.GetComponent<Renderer>().material = material.baby_material;
+                this.image.gameObject.GetComponent<Renderer>().material = material.baby_material_img;
                 //titles.text = "Have Baby";
                 break;
             case TileType.DownSize:
                 this.gameObject.GetComponent<Renderer>().material = material.downsize_material;
+                this.image.gameObject.GetComponent<Renderer>().material = material.doodads_material_img;
                 //titles.text = "DownSize";
                 break;
             case TileType.Doodads:
                 this.gameObject.GetComponent<Renderer>().material = material.doodads_material;
+                this.image.gameObject.GetComponent<Renderer>().material = material.doodads_material_img;
                 //titles.text = "Doodads";
                 break;
             default:

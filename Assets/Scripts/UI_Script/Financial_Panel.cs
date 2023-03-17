@@ -11,10 +11,6 @@ public class Financial_Panel : MonoBehaviour
     [SerializeField] private GameObject Content_Assets;
     [SerializeField] private GameObject Content_Expenses;
     [SerializeField] private GameObject Content_Liabilities;
-    [SerializeField] private TextMeshProUGUI total_Income;
-    [SerializeField] private TextMeshProUGUI total_Asset;
-    [SerializeField] private TextMeshProUGUI total_Expense;
-    [SerializeField] private TextMeshProUGUI total_Liabilities;
 
     public void loadFinInformation(Financial fin)
     {
@@ -29,11 +25,25 @@ public class Financial_Panel : MonoBehaviour
             switch (account.Game_account_type)
             {
                 case AccountType.Income:
-                    Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    if (account.Game_account_name != "Salary")
+                    {
+                        Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    }
+                    else
+                    {
+                        Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Amount + " " + account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    }
                     total_income += account.Game_account_value;
                     break;
                 case AccountType.Asset:
-                    Content_Assets.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    if (account.Game_account_name != "cash")
+                    {
+                        Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    }
+                    else
+                    {
+                        Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Amount + " " + account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    }
                     total_asset += account.Game_account_value;
                     break;
                 case AccountType.Expense:
@@ -48,10 +58,10 @@ public class Financial_Panel : MonoBehaviour
                     break;
             }
         }
-        total_Income.text = "Tong Thu Nhap: " + total_income;
-        total_Asset.text = "Tong Tai San: " + total_asset;
-        total_Expense.text = "Tong Chi Phi: " + total_expense;
-        total_Liabilities.text = "Tong No : " + total_liability;
+        //total_Income.text = "Tong Thu Nhap: " + total_income;
+        //total_Asset.text = "Tong Tai San: " + total_asset;
+        //total_Expense.text = "Tong Chi Phi: " + total_expense;
+        //total_Liabilities.text = "Tong No : " + total_liability;
     }
 
     private void resetText()
@@ -60,10 +70,10 @@ public class Financial_Panel : MonoBehaviour
         Content_Assets.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text = "";
         Content_Expenses.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text = "";
         Content_Liabilities.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text = "";
-        total_Income.text = "";
-        total_Asset.text = "";
-        total_Expense.text = "";
-        total_Liabilities.text = "";
+        //total_Income.text = "";
+        //total_Asset.text = "";
+        //total_Expense.text = "";
+        //total_Liabilities.text = "";
 
     }
 

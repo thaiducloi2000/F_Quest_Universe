@@ -8,6 +8,7 @@ public class Game_accounts
     public string Game_account_name { get; set; }
     public float Game_account_value { get; set; }
 
+    public int Amount { get; set; }
 
 
 
