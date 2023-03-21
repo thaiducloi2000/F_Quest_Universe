@@ -34,7 +34,10 @@ public class Rental_Panel : MonoBehaviour
 
     public void Down_Rent_Value()
     {
-        tmp_rent_money -= default_rent_money;
+        if (tmp_rent_money > 0)
+        {
+            tmp_rent_money -= default_rent_money;
+        }
         money.text = tmp_rent_money.ToString();
     }
     private void Reset_Rent_Value()

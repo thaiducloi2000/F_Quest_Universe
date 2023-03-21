@@ -4,7 +4,8 @@ using UnityEngine;
 using System.Collections;
 using System.Net;
 using System.Text;
-
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public class Server_Connection_Helper : MonoBehaviour 
 {
@@ -32,5 +33,26 @@ public class Server_Connection_Helper : MonoBehaviour
         }
     }
 
+
+    public List<T> ParseToList<T> (UnityWebRequest request)
+    {
+        List<T> list = new List<T>();
+        switch (request.result)
+        {
+            case UnityWebRequest.Result.ConnectionError:
+            case UnityWebRequest.Result.DataProcessingError:
+                Debug.LogError(": Error: " + request.error);
+                break;
+            case UnityWebRequest.Result.ProtocolError:
+                Debug.LogError(": HTTP Error: " + request.error);
+                break;
+            case UnityWebRequest.Result.Success:
+                list = JsonConvert.DeserializeObject<List<T>>(request.downloadHandler.text);
+                break;
+            default:
+                break;
+        }
+        return list;
+    }
 }
 

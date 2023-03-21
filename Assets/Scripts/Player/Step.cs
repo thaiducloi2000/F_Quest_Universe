@@ -30,8 +30,11 @@ public class Step : MonoBehaviour
             Vector3 nextPos = race[this.currentPos].transform.position;
             if (race[this.currentPos].GetComponent<Tile>().Type == TileType.PayCheck)
             {
-                Debug.Log("Paycheck");
                 Paycheck();
+            }else if (race[this.currentPos].GetComponent<Tile>().Type == TileType.Dream)
+            { 
+                GameManager.Instance.isPlayerMoving = false;
+                GameManager.Instance.EndGame = true;
             }
             nextPos.y = 0.25f;
             while (MoveToNextTiles(nextPos, player)) { yield return null; }
@@ -126,7 +129,6 @@ public class Step : MonoBehaviour
                 total_expense += account.Game_account_value;
             }
         }
-        Debug.Log(total_income + " _ " + total_expense);
         player.financial_rp.SetCash(player.financial_rp.GetCash() + total_income - total_expense);
     }
 
