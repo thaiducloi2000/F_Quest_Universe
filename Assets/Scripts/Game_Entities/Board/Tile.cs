@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 
 
-public enum TileType { Oppotunity, Charity, PayCheck, Baby,DownSize,Doodads,Market};
+public enum TileType { Oppotunity, Charity, PayCheck, Baby,DownSize,Doodads,Market,CashFlowDay,Divorce,Dream,Accused };
 
 public class Tile : MonoBehaviour
 {
@@ -11,6 +11,7 @@ public class Tile : MonoBehaviour
     //public TextMeshPro titles;
     public Tile_Material default_material;
     public GameObject image;
+    [SerializeField] private Dream dream;
 
     private void Start()
     {
@@ -18,6 +19,11 @@ public class Tile : MonoBehaviour
         SetMaterialTile(this.Type, default_material);
     }
 
+
+    public void SetDreamTile(Dream dream)
+    {
+        this.dream = dream;
+    }
 
     public void SetMaterialTile(TileType type,Tile_Material material)
     {
@@ -38,21 +44,25 @@ public class Tile : MonoBehaviour
                 this.image.gameObject.GetComponent<Renderer>().material = material.charity_material_img;
                 //titles.text = "Charity";
                 break;
+            case TileType.CashFlowDay:
             case TileType.PayCheck:
                 this.gameObject.GetComponent<Renderer>().material = material.paycheck_material;
                 this.image.gameObject.GetComponent<Renderer>().material = material.paycheck_material_img;
                 //titles.text = "PayCheck";
                 break;
+            case TileType.Divorce:
             case TileType.Baby:
                 this.gameObject.GetComponent<Renderer>().material = material.baby_material;
                 this.image.gameObject.GetComponent<Renderer>().material = material.baby_material_img;
                 //titles.text = "Have Baby";
                 break;
+            case TileType.Dream:
             case TileType.DownSize:
                 this.gameObject.GetComponent<Renderer>().material = material.downsize_material;
-                this.image.gameObject.GetComponent<Renderer>().material = material.doodads_material_img;
+                this.image.gameObject.GetComponent<Renderer>().material = material.downsize_material_img;
                 //titles.text = "DownSize";
                 break;
+            case TileType.Accused:
             case TileType.Doodads:
                 this.gameObject.GetComponent<Renderer>().material = material.doodads_material;
                 this.image.gameObject.GetComponent<Renderer>().material = material.doodads_material_img;

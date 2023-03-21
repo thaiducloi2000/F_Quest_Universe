@@ -37,31 +37,29 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // camera alway looking to root of Gameboard
         Camera.main.transform.LookAt(root);
         MoveCameraOnCirle();
-        //Camera.main.transform.RotateAround(root.transform.position, Vector3.up, 15f * Time.deltaTime);
-        //Camera.main.transform.position = offset;
     }
 
     public void Roll_Dice()
     {
-        // Dress Key button to roll
-        // Role Dice
-        int step = Random.Range(1, 7);
-        // Test
-        Debug.Log("Dice : " + step);
-        // Move
-        if (isInFatRace)
+        if (GameManager.Instance.EndGame != true)
         {
-            StartCoroutine(this.gameObject.GetComponent<Step>().Move(this, step, GameBoard.Instance.Tiles_Fat_Race));
+            // Dress Key button to roll
+            // Role Dice
+            int step = Random.Range(1, 7);
+            // Move
+            if (isInFatRace)
+            {
+                StartCoroutine(this.gameObject.GetComponent<Step>().Move(this, step, GameBoard.Instance.Tiles_Fat_Race));
+            }
+            else
+            {
+                StartCoroutine(this.gameObject.GetComponent<Step>().Move(this, step, GameBoard.Instance.Tiles_Rat_Race));
+            }
+
+            GameManager.Instance.nextTurn();
         }
-        else
-        {
-            StartCoroutine(this.gameObject.GetComponent<Step>().Move(this, step, GameBoard.Instance.Tiles_Rat_Race));
-        }
-        
-        GameManager.Instance.nextTurn();
     }
 
     public void SelectJoB()
@@ -114,9 +112,9 @@ public class Player : MonoBehaviour
     private void LoadAllJob()
     {
         EvenCard_Data.instance.Job_List = new List<Job>();
-        StartCoroutine(EvenCard_Data.instance.helper.Get("JobCards/job-card", (request, process) =>
+        StartCoroutine(EvenCard_Data.instance.helper.Get("jobcards", (request, process) =>
         {
-            List<Job> list = ParseJsonToListJob(request);
+            List<Job> list = EvenCard_Data.instance.helper.ParseToList<Job>(request);
             foreach (Job job in list)
             {
                 EvenCard_Data.instance.Job_List.Add(job);
@@ -128,25 +126,4 @@ public class Player : MonoBehaviour
         ));
     }
 
-    private List<Job> ParseJsonToListJob(UnityWebRequest webRequest)
-    {
-        List<Job> list = new List<Job>();
-        switch (webRequest.result)
-        {
-            case UnityWebRequest.Result.ConnectionError:
-            case UnityWebRequest.Result.DataProcessingError:
-                Debug.LogError(": Error: " + webRequest.error);
-                break;
-            case UnityWebRequest.Result.ProtocolError:
-                Debug.LogError(": HTTP Error: " + webRequest.error);
-                break;
-            case UnityWebRequest.Result.Success:
-                //Debug.Log(webRequest.downloadHandler.text);
-                list = JsonConvert.DeserializeObject<List<Job>>(webRequest.downloadHandler.text);
-                break;
-            default:
-                break;
-        }
-        return list;
-    }
 }

@@ -25,7 +25,7 @@ public class Financial_Panel : MonoBehaviour
             switch (account.Game_account_type)
             {
                 case AccountType.Income:
-                    if (account.Game_account_name != "Salary")
+                    if (account.Game_account_name == "Salary")
                     {
                         Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
                     }
@@ -36,13 +36,13 @@ public class Financial_Panel : MonoBehaviour
                     total_income += account.Game_account_value;
                     break;
                 case AccountType.Asset:
-                    if (account.Game_account_name != "cash")
+                    if (account.Game_account_name == "cash")
                     {
-                        Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                        Content_Assets.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
                     }
                     else
                     {
-                        Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Amount + " " + account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                        Content_Assets.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Amount + " " + account.Game_account_name + ": $" + account.Game_account_value + '\n';
                     }
                     total_asset += account.Game_account_value;
                     break;

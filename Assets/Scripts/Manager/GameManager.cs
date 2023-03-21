@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public List<Player> playerList;
     public bool isPlayerMoving;
+    public bool EndGame;
     // To Defind Player Turn;
     public Turn isTurn;
 
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         //{
             Instantiate(PlayerPrefabs);
         //}
+        EndGame = false;
     }
 
     private void Start()
