@@ -102,11 +102,9 @@ public class ShopManager : MonoBehaviour
     public void ChessBoardTab()
     {
         tab = "ChessBoardTab";
-        Debug.Log(tab);
     }
     public void OutfitTab()
     {
         tab = "OutfitTab";
-        Debug.Log(tab);
     }
 }

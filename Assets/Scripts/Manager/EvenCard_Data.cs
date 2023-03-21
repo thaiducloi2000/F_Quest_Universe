@@ -42,9 +42,9 @@ public class EvenCard_Data : MonoBehaviour
         Big_Deal_List = new List<Big_Deal>();
         Doodads = new List<Doodad>();
         Markets = new List<Market>();
-        StartCoroutine(helper.Get("EventCards/event-card", (request,process) =>
+        StartCoroutine(helper.Get("eventcards", (request,process) =>
         {
-            List<Event_card_Entity> event_card = ParseJsonToListEventCard(request);
+            List<Event_card_Entity> event_card = helper.ParseToList<Event_card_Entity>(request);
             //Debug.Log(string.Format("Downloaded Event Card Process {0:P1}", process * 100f + "%"));
             foreach (Event_card_Entity card in event_card)
             {
@@ -69,28 +69,6 @@ public class EvenCard_Data : MonoBehaviour
         }
         ));
 
-    }
-
-    private List<Event_card_Entity> ParseJsonToListEventCard(UnityWebRequest webRequest)
-    {
-        List<Event_card_Entity> list= new List<Event_card_Entity>();
-        switch (webRequest.result)
-        {
-            case UnityWebRequest.Result.ConnectionError:
-            case UnityWebRequest.Result.DataProcessingError:
-                Debug.LogError(": Error: " + webRequest.error);
-                break;
-            case UnityWebRequest.Result.ProtocolError:
-                Debug.LogError(": HTTP Error: " + webRequest.error);
-                break;
-            case UnityWebRequest.Result.Success:
-                //Debug.Log(webRequest.downloadHandler.text);
-                list = JsonConvert.DeserializeObject<List<Event_card_Entity>>(webRequest.downloadHandler.text);
-                break;
-            default:
-                break;
-        }
-        return list;
     }
 
     private void LoadDoodad(Event_card_Entity card)
