@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36110fc6d013f1245804404db98fc987, type: 3}
   m_Name: FPTUni 3
   m_EditorClassIdentifier: 
-  name: FPT Uniform 2019
+  name: FPT Uniform 2021
   price: 69
-  image: {fileID: 21300000, guid: 5f8ea09f006e2c7479c393cb3879e4cd, type: 3}
+  image: {fileID: 21300000, guid: e33ff48648214f34181c440dfabc597b, type: 3}
