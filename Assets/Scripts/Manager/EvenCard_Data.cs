@@ -71,6 +71,7 @@ public class EvenCard_Data : MonoBehaviour
 
     }
 
+
     private void LoadDoodad(Event_card_Entity card)
     {
         Doodads.Add(new Doodad(card.Event_name, card.Account_Name,card.Event_description, card.Cost,card.Action));
