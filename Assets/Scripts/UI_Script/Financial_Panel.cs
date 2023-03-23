@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Financial_Panel : MonoBehaviour
@@ -11,7 +12,10 @@ public class Financial_Panel : MonoBehaviour
     [SerializeField] private GameObject Content_Assets;
     [SerializeField] private GameObject Content_Expenses;
     [SerializeField] private GameObject Content_Liabilities;
-
+    [SerializeField] private TextMeshProUGUI Total_Income;
+    [SerializeField] private TextMeshProUGUI Total_Expense;
+    [SerializeField] private TextMeshProUGUI Income_Goal;
+    [SerializeField] private Slider Goal_Percent;
     public void loadFinInformation(Financial fin)
     {
         resetText();
@@ -19,6 +23,7 @@ public class Financial_Panel : MonoBehaviour
         float total_asset = 0;
         float total_expense = 0;
         float total_liability = 0;
+        float salary = 0;
         Job_Name.GetComponent<TextMeshProUGUI>().text = fin.job_card_id;
         foreach (Game_accounts account in fin.game_accounts)
         {
@@ -28,6 +33,7 @@ public class Financial_Panel : MonoBehaviour
                     if (account.Game_account_name == "Salary")
                     {
                         Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                        salary += account.Game_account_value;
                     }
                     else
                     {
@@ -58,10 +64,11 @@ public class Financial_Panel : MonoBehaviour
                     break;
             }
         }
-        //total_Income.text = "Tong Thu Nhap: " + total_income;
-        //total_Asset.text = "Tong Tai San: " + total_asset;
-        //total_Expense.text = "Tong Chi Phi: " + total_expense;
-        //total_Liabilities.text = "Tong No : " + total_liability;
+        Total_Income.text = "Total Income : " + total_income + "$";
+        Debug.Log(fin.GetCash());
+        Total_Expense.text = "Total Expense : " + total_expense + "$";
+        Goal_Percent.value = ((total_income - salary) / total_expense);
+        Income_Goal.text = Mathf.Round((total_income - salary) / total_expense * 100f) +"%";
     }
 
     private void resetText()
@@ -70,10 +77,9 @@ public class Financial_Panel : MonoBehaviour
         Content_Assets.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text = "";
         Content_Expenses.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text = "";
         Content_Liabilities.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text = "";
-        //total_Income.text = "";
-        //total_Asset.text = "";
-        //total_Expense.text = "";
-        //total_Liabilities.text = "";
+        Total_Income.text = "";
+        Income_Goal.text = "";
+        Total_Expense.text = "";
 
     }
 

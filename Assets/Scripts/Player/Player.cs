@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public Financial financial_rp;
     public Job job;
     public Turn myTurn;
+    public List<Dream> dreams;
 
     private void Start()
     {
@@ -87,7 +88,11 @@ public class Player : MonoBehaviour
         }
         this.Children_cost = job.Children_cost;
         this.financial_rp = new Financial(0,this.id,job.Job_card_name,0, expense,job.Game_accounts);
-
+        dreams = GameBoard.Instance.GetListDream();
+        foreach (Dream dream in dreams)
+        {
+            Debug.Log(dream.Name);
+        }
     }
 
     public void MoveCameraOnCirle()

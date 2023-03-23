@@ -31,10 +31,6 @@ public class Step : MonoBehaviour
             if (race[this.currentPos].GetComponent<Tile>().Type == TileType.PayCheck)
             {
                 Paycheck();
-            }else if (race[this.currentPos].GetComponent<Tile>().Type == TileType.Dream)
-            { 
-                GameManager.Instance.isPlayerMoving = false;
-                GameManager.Instance.EndGame = true;
             }
             nextPos.y = 0.25f;
             while (MoveToNextTiles(nextPos, player)) { yield return null; }
@@ -43,10 +39,26 @@ public class Step : MonoBehaviour
         }
         GameManager.Instance.isPlayerMoving = false;
 
+
+        if (isDreamTile(race[this.currentPos].GetComponent<Tile>()))
+        {
+            GameManager.Instance.EndGame = true;
+        }
         // popup panel when player stop moving 
         PopupPanel(race[this.currentPos].GetComponent<Tile>());
     }
 
+    private bool isDreamTile(Tile tile)
+    {
+        foreach (Dream dream in player.dreams)
+        {
+            if (dream.id == tile.dream.id)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public IEnumerator MoveFatRace(Player player)
     {
