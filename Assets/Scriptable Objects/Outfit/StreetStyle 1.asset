@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36110fc6d013f1245804404db98fc987, type: 3}
   m_Name: StreetStyle 1
   m_EditorClassIdentifier: 
-  name: StreetStyle
+  name: T-Shirt Grey
   price: 86
-  image: {fileID: 21300000, guid: 5f8ea09f006e2c7479c393cb3879e4cd, type: 3}
+  image: {fileID: 21300000, guid: 17ca3ca865c16e54ea5d174f5ba96e78, type: 3}
