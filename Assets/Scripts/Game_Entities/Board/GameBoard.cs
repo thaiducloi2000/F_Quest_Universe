@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Random = UnityEngine.Random;
+using System.Collections;
+using UnityEngine.Networking;
+using Newtonsoft.Json;
 
 public class GameBoard : MonoBehaviour
 {
@@ -165,7 +167,7 @@ public class GameBoard : MonoBehaviour
                 type = TileType.Divorce;
                 break;
             case "Dream":
-                type = TileType.Dream; // Win 
+                type = TileType.Dream;
                 break;
             case "Charity":
                 type = TileType.Charity;
@@ -180,17 +182,20 @@ public class GameBoard : MonoBehaviour
                 type = TileType.Oppotunity;
                 break;
         }
-        int dream_amount = dreams.Count;
+        List<Dream> dream = this.dreams;
+        Debug.Log("Before Add Dream " + dream.Count);
         foreach (int i in tile.positions)
         {
             Tiles_Fat_Race[i].GetComponent<Tile>().Type = type;
             if(type == TileType.Dream)
             {
-                Tiles_Fat_Race[i].GetComponent<Tile>().SetDreamTile(dreams[dream_amount-1]);
-                dream_amount--;
+                Tiles_Fat_Race[i].GetComponent<Tile>().SetDreamTile(dream[dream.Count - 1]);
+                dream.Remove(dream[dream.Count - 1]);
             }
             Tiles_Fat_Race[i].GetComponent<Tile>().SetMaterialTile(type,tile_avatar);
         }
+
+        Debug.Log("After Add Dream " + dream.Count);
     }
 
     private void Spawn_Fat_Race(int NumberTiles_Fat_Race)
@@ -222,32 +227,5 @@ public class GameBoard : MonoBehaviour
             tile.transform.parent = this.transform;
             Tiles_Fat_Race.Add(tile);
         }
-    }
-
-    public List<Dream> GetListDream()
-    {
-        List<Dream> dream_list = new List<Dream>();
-        List<int> ints= new List<int>();
-        int rnd;
-        rnd = Random.Range(0,dreams.Count-1);
-        if (rnd > 0 && rnd < dreams.Count-1)
-        {
-            dream_list.Add(dreams[rnd]);
-            dream_list.Add(dreams[rnd + 1]);
-            dream_list.Add(dreams[rnd - 1]);
-        }else if(rnd == 0)
-        {
-            dream_list.Add(dreams[rnd]);
-            dream_list.Add(dreams[rnd + 1]);
-            dream_list.Add(dreams[rnd + 2]);
-        }
-        else if(rnd == dreams.Count - 1)
-        {
-            dream_list.Add(dreams[rnd]);
-            dream_list.Add(dreams[rnd - 1]);
-            dream_list.Add(dreams[rnd - 2]);
-        }
-        Debug.Log(dream_list.Count);
-        return dream_list;
     }
 }

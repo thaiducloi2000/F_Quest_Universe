@@ -11,13 +11,12 @@ public class Tile : MonoBehaviour
     //public TextMeshPro titles;
     public Tile_Material default_material;
     public GameObject image;
-    [SerializeField] public Dream dream;
+    [SerializeField] private Dream dream;
 
     private void Start()
     {
         this.gameObject.transform.localScale *= GameBoard.Instance.size;
         SetMaterialTile(this.Type, default_material);
-        dream = new Dream("", "", "", 0);
     }
 
 
