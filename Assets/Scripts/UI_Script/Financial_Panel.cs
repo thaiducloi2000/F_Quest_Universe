@@ -68,7 +68,7 @@ public class Financial_Panel : MonoBehaviour
         Debug.Log(fin.GetCash());
         Total_Expense.text = "Total Expense : " + total_expense + "$";
         Goal_Percent.value = ((total_income - salary) / total_expense);
-        Income_Goal.text = Mathf.Round((total_income - salary) / total_expense * 100f) + "%";
+        Income_Goal.text = Mathf.Round((total_income - salary) / total_expense * 100f) +"%";
     }
 
     private void resetText()

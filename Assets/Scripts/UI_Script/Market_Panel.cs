@@ -8,6 +8,7 @@ public class Market_Panel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Description;
     [SerializeField] private TextMeshProUGUI Cost_Txt;
     public Market market;
+    [SerializeField] private Player player;
 
 
     public void SetMarketPanel(Market market)
@@ -24,15 +25,15 @@ public class Market_Panel : MonoBehaviour
 
     public void AcceptMarket()
     {
-        foreach(Game_accounts account in Player.Instance.financial_rp.game_accounts)
+        foreach(Game_accounts account in this.player.financial_rp.game_accounts)
         {
             if(account.Game_account_name == market.Account_Name)
             {
                 switch (market.Action)
                 {
                     case 2:
-                        Player.Instance.financial_rp.game_accounts.Remove(account);
-                        Player.Instance.financial_rp.SetCash(Player.Instance.financial_rp.GetCash() + market.Cost);
+                        player.financial_rp.game_accounts.Remove(account);
+                        player.financial_rp.SetCash(player.financial_rp.GetCash() + market.Cost);
                         break;
                     case 4:
                         account.Game_account_value *= 2;
