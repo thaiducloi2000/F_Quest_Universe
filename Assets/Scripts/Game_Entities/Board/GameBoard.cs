@@ -59,7 +59,7 @@ public class GameBoard : MonoBehaviour
 
     public void Set_Tiles_Type()
     {
-        StartCoroutine(EvenCard_Data.instance.helper.Get("tiles", (request,process) =>
+        StartCoroutine(EvenCard_Data.instance.helper.Get("tiles/all", (request,process) =>
         {
             //Debug.Log(request.downloadHandler.text);
             List<Tile_Entity> tiles = EvenCard_Data.instance.helper.ParseToList<Tile_Entity>(request);
@@ -100,7 +100,7 @@ public class GameBoard : MonoBehaviour
 
     public void Load_Dream()
     {
-        StartCoroutine(EvenCard_Data.instance.helper.Get("dreams", (request, process) =>
+        StartCoroutine(EvenCard_Data.instance.helper.Get("dreams/all", (request, process) =>
         {
             //Debug.Log(request.downloadHandler.text);
             if (dreams == null)
