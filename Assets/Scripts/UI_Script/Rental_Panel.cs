@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class Rental_Panel : MonoBehaviour
 {
     [SerializeField] private TMP_InputField money;
-    [SerializeField] private GameObject Loan_Panel;
+    [SerializeField] public GameObject Loan_Panel;
     public bool showPenel = false;
     private const float default_rent_money = 1000;
     private float tmp_rent_money;
-    public Player player;
 
 
     private void Start()
@@ -55,16 +55,17 @@ public class Rental_Panel : MonoBehaviour
         else
         {
             Liability lia = new Liability("Loan", tmp_rent_money, 1);
-            Expense expense = new Expense("Loan Expense",lia.Game_account_value*0.1f,1);
-            player.financial_rp.game_accounts.Add(lia);
-            player.financial_rp.game_accounts.Add(expense);
+            Expense expense = new Expense("Loan Expense", lia.Game_account_value * 0.1f, 1);
+            Player.Instance.financial_rp.SetCash(tmp_rent_money + Player.Instance.financial_rp.GetCash());
+            Player.Instance.financial_rp.game_accounts.Add(lia);
+            Player.Instance.financial_rp.game_accounts.Add(expense);
         }
         Show_Penel();
     }
 
     private bool HasLoan()
     {
-        foreach(Game_accounts account in player.financial_rp.game_accounts)
+        foreach (Game_accounts account in Player.Instance.financial_rp.game_accounts)
         {
             if (account.Game_account_name == "Loan" && account.Game_account_type == AccountType.Liability)
             {
@@ -78,7 +79,7 @@ public class Rental_Panel : MonoBehaviour
     {
         float tmp = 0;
 
-        foreach (Game_accounts account in player.financial_rp.game_accounts)
+        foreach (Game_accounts account in Player.Instance.financial_rp.game_accounts)
         {
             if (account.Game_account_name == "Loan" && account.Game_account_type == AccountType.Liability)
             {
@@ -86,12 +87,13 @@ public class Rental_Panel : MonoBehaviour
                 tmp = account.Game_account_value;
             }
         }
-        foreach (Game_accounts account in player.financial_rp.game_accounts)
+        foreach (Game_accounts account in Player.Instance.financial_rp.game_accounts)
         {
             if (account.Game_account_name == "Loan Expense" && account.Game_account_type == AccountType.Expense)
             {
                 account.Game_account_value = tmp * 0.1f;
             }
         }
+        Player.Instance.financial_rp.SetCash(tmp_rent_money + Player.Instance.financial_rp.GetCash());
     }
 }

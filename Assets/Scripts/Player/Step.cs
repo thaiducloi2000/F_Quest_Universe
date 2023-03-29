@@ -98,12 +98,12 @@ public class Step : MonoBehaviour
         switch (tile.Type)
         {
             case TileType.Oppotunity:
-                ui.PopUpDeal_UI();
+                UI_Manager.instance.PopUpDeal_UI();
                 break;
             case TileType.Market:
                 //UI_Manager.Instance.PopUpDeal_UI();
                 Market market =  EvenCard_Data.instance.Markets[Random.Range(0, EvenCard_Data.instance.Markets.Count-1)];
-                ui.Popup_Market_Panel(market);
+                UI_Manager.instance.Popup_Market_Panel(market);
                 break;
             case TileType.Baby:
                 Baby();
@@ -119,7 +119,7 @@ public class Step : MonoBehaviour
             case TileType.Doodads:
                 //UI_Manager.Instance.PopUpDeal_UI();
                 Doodad doodad = EvenCard_Data.instance.Doodads[Random.Range(0, EvenCard_Data.instance.Doodads.Count-1)];
-                ui.Popup_Doodad_Panel(doodad);
+                UI_Manager.instance.Popup_Doodad_Panel(doodad);
                 Doodads(doodad);
                 break;
             default:
