@@ -8,7 +8,6 @@ using UnityEngine.Networking;
 
 public class Player : MonoBehaviour
 {
-    public static Player Instance;
     public string id = "7f1515ce-a0bd-4b95-adf7-98d1243e6117CU";
     public Transform root;
     public Vector3 offset;
@@ -17,20 +16,11 @@ public class Player : MonoBehaviour
     public bool isInFatRace = false;
     public float Children_cost = 0;
     //public float cash;
+    public UI_Manager UI;
     public Financial financial_rp;
     public Job job;
     public Turn myTurn;
     public List<Dream> dreams;
-
-
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-
-        }
-        Instance = this;
-    }
 
     private void Start()
     {
@@ -52,9 +42,57 @@ public class Player : MonoBehaviour
         MoveCameraOnCirle();
     }
 
+    public void Roll_Dice()
+    {
+        if (GameManager.Instance.EndGame != true)
+        {
+            // Dress Key button to roll
+            // Role Dice
+            int step = Random.Range(1, 7);
+            // Move
+            if (isInFatRace)
+            {
+                StartCoroutine(this.gameObject.GetComponent<Step>().Move(this, step, GameBoard.Instance.Tiles_Fat_Race));
+            }
+            else
+            {
+                StartCoroutine(this.gameObject.GetComponent<Step>().Move(this, step, GameBoard.Instance.Tiles_Rat_Race));
+            }
+
+            GameManager.Instance.nextTurn();
+        }
+    }
+
     public void SelectJoB()
     {
-        UI_Manager.instance.PopupJob_UI(EvenCard_Data.instance.Job_List[Random.Range(0, EvenCard_Data.instance.Job_List.Count - 1)]);
+        UI.PopupJob_UI(EvenCard_Data.instance.Job_List[Random.Range(0, EvenCard_Data.instance.Job_List.Count - 1)]);
+    }
+
+    public void AcceptJob()
+    {
+        this.job = UI.Job_Panel.GetComponent<Job_Panel>().job;
+        UI.Job_Panel.SetActive(false);
+        ApplyJobToFinancial(this.job);
+        UI.Financial_Panel.GetComponent<Financial_Panel_Manager>().Financial(this.financial_rp);
+    }
+
+    public void ApplyJobToFinancial(Job job)
+    {
+        float expense = 0;
+        foreach(Game_accounts account in job.Game_accounts)
+        {
+            if(account.Game_account_type == AccountType.Expense)
+            {
+                expense += account.Game_account_value;
+            }
+        }
+        this.Children_cost = job.Children_cost;
+        this.financial_rp = new Financial(0,this.id,job.Job_card_name,0, expense,job.Game_accounts);
+        dreams = GameBoard.Instance.GetListDream();
+        foreach (Dream dream in dreams)
+        {
+            Debug.Log(dream.Name);
+        }
     }
 
     public void MoveCameraOnCirle()
@@ -62,9 +100,9 @@ public class Player : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Moved)
+            if(touch.phase == TouchPhase.Moved)
             {
-                Camera.main.transform.RotateAround(root.transform.position, new Vector3(0f, touch.deltaPosition.x, 0f), 100f * Time.deltaTime);
+                Camera.main.transform.RotateAround(root.transform.position,new Vector3(0f,touch.deltaPosition.x,0f), 100f * Time.deltaTime);
             }
         }
     }
@@ -73,21 +111,19 @@ public class Player : MonoBehaviour
     {
         this.isInFatRace = true;
         this.gameObject.GetComponent<Step>().currentPos = 0;
-        //Financial fin = new Financial
         StartCoroutine(this.gameObject.GetComponent<Step>().MoveFatRace(this));
     }
 
     private void LoadAllJob()
     {
         EvenCard_Data.instance.Job_List = new List<Job>();
-        StartCoroutine(EvenCard_Data.instance.helper.Get("jobcards/all", (request, process) =>
+        StartCoroutine(EvenCard_Data.instance.helper.Get("jobcards", (request, process) =>
         {
             List<Job> list = EvenCard_Data.instance.helper.ParseToList<Job>(request);
             foreach (Job job in list)
             {
                 EvenCard_Data.instance.Job_List.Add(job);
-            }
-            if (request.downloadProgress == 1)
+            }if(request.downloadProgress == 1)
             {
                 SelectJoB();
             }

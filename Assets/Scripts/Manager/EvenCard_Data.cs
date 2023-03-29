@@ -42,7 +42,7 @@ public class EvenCard_Data : MonoBehaviour
         Big_Deal_List = new List<Big_Deal>();
         Doodads = new List<Doodad>();
         Markets = new List<Market>();
-        StartCoroutine(helper.Get("eventcards/all", (request,process) =>
+        StartCoroutine(helper.Get("eventcards", (request,process) =>
         {
             List<Event_card_Entity> event_card = helper.ParseToList<Event_card_Entity>(request);
             //Debug.Log(string.Format("Downloaded Event Card Process {0:P1}", process * 100f + "%"));
