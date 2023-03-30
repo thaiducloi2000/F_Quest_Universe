@@ -48,15 +48,16 @@ public class Rental_Panel : MonoBehaviour
 
     public void Accept_Loan()
     {
+        float cash = float.Parse(money.text.Trim());
         if (HasLoan())
         {
-            Update_Financial();
+            Update_Financial(cash);
         }
         else
         {
-            Liability lia = new Liability("Loan", tmp_rent_money, 1);
-            Expense expense = new Expense("Loan Expense", lia.Game_account_value * 0.1f, 1);
-            Player.Instance.financial_rp.SetCash(tmp_rent_money + Player.Instance.financial_rp.GetCash());
+            Liability lia = new Liability("Loan", cash, 1);
+            Expense expense = new Expense("Loan Expense", lia.Game_account_value * 0.01f, 1);
+            Player.Instance.financial_rp.SetCash(cash + Player.Instance.financial_rp.GetCash());
             Player.Instance.financial_rp.game_accounts.Add(lia);
             Player.Instance.financial_rp.game_accounts.Add(expense);
         }
@@ -75,7 +76,7 @@ public class Rental_Panel : MonoBehaviour
         return false;
     }
 
-    private void Update_Financial()
+    private void Update_Financial(float cash)
     {
         float tmp = 0;
 
@@ -83,7 +84,7 @@ public class Rental_Panel : MonoBehaviour
         {
             if (account.Game_account_name == "Loan" && account.Game_account_type == AccountType.Liability)
             {
-                account.Game_account_value += tmp_rent_money;
+                account.Game_account_value += cash;
                 tmp = account.Game_account_value;
             }
         }
@@ -91,9 +92,9 @@ public class Rental_Panel : MonoBehaviour
         {
             if (account.Game_account_name == "Loan Expense" && account.Game_account_type == AccountType.Expense)
             {
-                account.Game_account_value = tmp * 0.1f;
+                account.Game_account_value = tmp * 0.01f;
             }
         }
-        Player.Instance.financial_rp.SetCash(tmp_rent_money + Player.Instance.financial_rp.GetCash());
+        Player.Instance.financial_rp.SetCash(cash + Player.Instance.financial_rp.GetCash());
     }
 }

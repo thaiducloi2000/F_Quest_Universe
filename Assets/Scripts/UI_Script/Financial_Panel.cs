@@ -32,19 +32,19 @@ public class Financial_Panel : MonoBehaviour
                 case AccountType.Income:
                     if (account.Game_account_name == "Salary")
                     {
-                        Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                        Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $ " + account.Game_account_value + '\n';
                         salary += account.Game_account_value;
                     }
                     else
                     {
-                        Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Amount + " " + account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                        Content_Incomes.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Amount + " " + account.Game_account_name + ": $ " + account.Game_account_value + '\n';
                     }
                     total_income += account.Game_account_value;
                     break;
                 case AccountType.Asset:
                     if (account.Game_account_name == "cash")
                     {
-                        Content_Assets.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                        Content_Assets.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $ " + account.Game_account_value + '\n';
                     }
                     else
                     {
@@ -53,11 +53,11 @@ public class Financial_Panel : MonoBehaviour
                     total_asset += account.Game_account_value;
                     break;
                 case AccountType.Expense:
-                    Content_Expenses.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    Content_Expenses.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $ " + account.Game_account_value + '\n';
                     total_expense += account.Game_account_value;
                     break;
                 case AccountType.Liability:
-                    Content_Liabilities.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $" + account.Game_account_value + '\n';
+                    Content_Liabilities.GetComponent<ScrollRect>().content.GetComponentInChildren<TextMeshProUGUI>().text += account.Game_account_name + ": $ " + account.Game_account_value + '\n';
                     total_liability += account.Game_account_value;
                     break;
                 default:

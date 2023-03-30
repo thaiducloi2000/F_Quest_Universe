@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     {
         if (Instance != null)
         {
-
+            Instance = this;
         }
         Instance = this;
     }
@@ -73,7 +73,9 @@ public class Player : MonoBehaviour
     {
         this.isInFatRace = true;
         this.gameObject.GetComponent<Step>().currentPos = 0;
-        //Financial fin = new Financial
+        Financial fin = new Financial(0, this.id, this.job.id, this.financial_rp.GetPassiveIncome() * 100f, 0, new List<Game_accounts>());
+
+        UI_Manager.instance.Financial_Panel.GetComponent<Financial_Panel_Manager>().Financial(fin);
         StartCoroutine(this.gameObject.GetComponent<Step>().MoveFatRace(this));
     }
 

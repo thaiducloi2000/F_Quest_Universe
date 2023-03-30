@@ -43,7 +43,7 @@ public class Financial
         }
     }
 
-    public bool GetPassiveIncome()
+    public float GetPassiveIncome()
     {
         float passiveIncome = 0;
         foreach(Game_accounts account in game_accounts)
@@ -57,7 +57,7 @@ public class Financial
                 passiveIncome += account.Game_account_value;
             }
         }
-        return passiveIncome >= 0;
+        return passiveIncome;
     }
 
 }
