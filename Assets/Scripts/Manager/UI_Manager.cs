@@ -78,10 +78,10 @@ public class UI_Manager : MonoBehaviour
             else
             {
                 ApplyBigDeal(EvenCard_Data.instance.Big_Deal_List[b_deal]);
-                if (Player.Instance.financial_rp.GetPassiveIncome() && Player.Instance.isInFatRace == false)
+                if (Player.Instance.financial_rp.GetPassiveIncome()>= 0 && Player.Instance.isInFatRace == false)
                 {
 
-                    Player.Instance.isInFatRace = Player.Instance.financial_rp.GetPassiveIncome();
+                    Player.Instance.isInFatRace = Player.Instance.financial_rp.GetPassiveIncome() >= 0;
                     Player.Instance.MoveToFatRace();
                 }
                 Deal_Panel.SetActive(false);
@@ -98,10 +98,10 @@ public class UI_Manager : MonoBehaviour
             else
             {
                 ApplySmallDeal(EvenCard_Data.instance.Small_Deal_List[s_deal], 1);
-                if (Player.Instance.financial_rp.GetPassiveIncome() && Player.Instance.isInFatRace == false)
+                if (Player.Instance.financial_rp.GetPassiveIncome() >=0 && Player.Instance.isInFatRace == false)
                 {
 
-                    Player.Instance.isInFatRace = Player.Instance.financial_rp.GetPassiveIncome();
+                    Player.Instance.isInFatRace = Player.Instance.financial_rp.GetPassiveIncome() >= 0;
                     Player.Instance.MoveToFatRace();
                 }
                 Deal_Panel.SetActive(false);
